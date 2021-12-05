@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tahook.RankingScene">
+   <children>
+      <Pane layoutX="225.0" layoutY="117.0" onMouseClicked="#switchToPodiumScene" prefHeight="400.0" prefWidth="350.0" style="-fx-background-color: #fefefe;" styleClass="ranking-box">
+         <effect>
+            <DropShadow color="#00000066" />
+         </effect>
+         <children>
+            <Pane layoutX="75.0" layoutY="40.0" prefHeight="80.0" prefWidth="200.0" styleClass="result-box">
+               <effect>
+                  <DropShadow color="#00000065" />
+               </effect>
+               <children>
+                  <Label layoutX="43.0" layoutY="18.0" text="BRAWO!" textFill="WHITE">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="50.0" layoutY="140.0" prefHeight="40.0" prefWidth="250.0" styleClass="ranking-position">
+               <effect>
+                  <DropShadow color="#0000007f" />
+               </effect>
+               <children>
+                  <Label layoutX="14.0" layoutY="5.0" text="1." textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="192.0" layoutY="5.0" text="1024" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="36.0" layoutY="5.0" text="Mateusz" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="50.0" layoutY="190.0" prefHeight="40.0" prefWidth="250.0" styleClass="ranking-position">
+               <children>
+                  <Label layoutX="14.0" layoutY="5.0" text="2." textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="192.0" layoutY="5.0" text="1023" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="36.0" layoutY="5.0" text="Marcin" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow color="#0000007f" />
+               </effect>
+            </Pane>
+            <Pane layoutX="50.0" layoutY="242.0" prefHeight="40.0" prefWidth="250.0" styleClass="ranking-position">
+               <children>
+                  <Label layoutX="14.0" layoutY="5.0" text="3." textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="192.0" layoutY="5.0" text="865" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="36.0" layoutY="5.0" text="Wojtek" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow color="#0000007f" />
+               </effect>
+            </Pane>
+            <Pane layoutX="50.0" layoutY="295.0" prefHeight="40.0" prefWidth="250.0" styleClass="ranking-position">
+               <children>
+                  <Label layoutX="14.0" layoutY="5.0" text="4." textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="192.0" layoutY="5.0" text="544" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="36.0" layoutY="5.0" text="Dawid" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow color="#0000007f" />
+               </effect>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane prefHeight="40.0" prefWidth="800.0" styleClass="player-navbar" stylesheets="@../../css/style.css">
+         <children>
+            <Label layoutX="658.0" layoutY="5.0" text="PIN:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="700.0" layoutY="5.0" text="123456">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow color="#00000099" height="30.0" radius="12.25" />
+         </effect>
+      </Pane>
+   </children>
+</AnchorPane>

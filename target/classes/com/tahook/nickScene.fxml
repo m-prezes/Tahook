@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tahook.player.NickScene">
+   <children>
+      <Pane layoutX="275.0" layoutY="150.0" prefHeight="300.0" prefWidth="250.0" style="-fx-background-color: #864cbf;">
+         <children>
+            <Button layoutX="95.0" layoutY="223.0" mnemonicParsing="false" onAction="#switchToWaitingScene" text="Ustaw" />
+            <Label layoutX="19.0" layoutY="84.0" text="Wpisz twój nick:" textFill="WHITE">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <TextField alignment="CENTER" layoutX="59.0" layoutY="150.0" prefHeight="31.0" prefWidth="131.0" promptText="Nick" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tahook.player.WaitingScene">
+   <children>
+      <Pane prefHeight="40.0" prefWidth="800.0" styleClass="player-navbar" stylesheets="@../../../css/style.css">
+         <children>
+            <Label layoutX="658.0" layoutY="5.0" text="PIN:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="700.0" layoutY="5.0" text="123456">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow color="#00000099" height="30.0" radius="12.25" />
+         </effect>
+      </Pane>
+      <Label layoutX="185.0" layoutY="256.0" onMouseClicked="#switchToRankingScene" text="Oh shit...genius?" textFill="WHITE">
+         <font>
+            <Font size="60.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

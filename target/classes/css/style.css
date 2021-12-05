@@ -1,0 +1,57 @@
+.background{
+    -fx-background-image:url("../img/background.jpg");
+}
+
+.choose-role-box{
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: black;
+}
+
+
+.join-cointainer{
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: black;
+}
+.join-button{
+        -fx-background-color: #444444;
+}
+
+.player-navbar{
+    -fx-background-color: #f4f4f4;
+}
+
+.question-panel{
+    -fx-background-color: #f4f4f4;
+}
+
+.ranking-box{
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+
+.result-box{
+    -fx-background-color: #00a205;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+.ranking-position{
+    -fx-background-color: #712ddc;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+.play-again-button{
+-fx-background-color: #b1b1b1;
+}
+
+.podium-name-box{
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
