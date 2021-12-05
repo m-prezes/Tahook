@@ -22,7 +22,7 @@ public class Main extends Application {
 
 //            Image icon = new Image("icon.png");
 //            stage.getIcons().add(icon);
-            stage.setTitle("Kahoot");
+            stage.setTitle("Tahook");
             stage.setResizable(false);
 
             stage.setScene(scene);
