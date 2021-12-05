@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com</groupId>
-    <artifactId>Kahoot</artifactId>
+    <artifactId>Tahook</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Kahoot</name>
+    <name>Tahook</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -60,7 +60,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.kahoot/com.tahook.Main</mainClass>
+                            <mainClass>com.tahook.Main</mainClass>
                         </configuration>
                     </execution>
                 </executions>

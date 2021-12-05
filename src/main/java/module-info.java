@@ -1,4 +1,4 @@
-module com.kahoot {
+module com.tahook {
     requires javafx.controls;
     requires javafx.fxml;
 
