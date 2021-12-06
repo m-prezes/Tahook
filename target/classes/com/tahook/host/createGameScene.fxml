@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -8,10 +9,33 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tahook.host.CreateGameScene">
    <children>
-      <Pane layoutX="100.0" layoutY="100.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;">
+      <Pane layoutX="100.0" layoutY="50.0" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: white;" styleClass="rounded-box">
          <children>
-            <Button layoutX="255.0" layoutY="338.0" mnemonicParsing="false" onAction="#switchToWaitingRoom" text="Stwórz gre" />
+            <Button layoutX="255.0" layoutY="440.0" mnemonicParsing="false" onAction="#switchToWaitingRoom" styleClass="join-button" text="Stwórz gre" textFill="WHITE" />
+            <Pane layoutX="25.0" layoutY="14.0" prefHeight="200.0" prefWidth="550.0">
+               <children>
+                  <Button layoutX="219.0" layoutY="149.0" mnemonicParsing="false" onAction="#addQuestion" styleClass="join-button" text="Dodaj pytanie" textFill="WHITE" />
+                  <TextField fx:id="tfQuestion" layoutX="50.0" layoutY="21.0" prefHeight="30.0" prefWidth="450.0" promptText="Pytanie" />
+                  <TextField fx:id="tfAnswer_a" layoutX="67.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" promptText="Odpowiedź a" />
+                  <TextField fx:id="tfAnswer_b" layoutX="67.0" layoutY="101.0" prefHeight="30.0" prefWidth="200.0" promptText="Odpowiedź b" />
+                  <TextField fx:id="tfAnswer_c" layoutX="287.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" promptText="Odpowiedź c" />
+                  <TextField fx:id="tfAnswer_d" layoutX="287.0" layoutY="101.0" prefHeight="30.0" prefWidth="200.0" promptText="Odpowiedź d" />
+                  <Button layoutX="129.0" layoutY="149.0" mnemonicParsing="false" onAction="#wyczyscPola" styleClass="join-button" text="Wyczyść" textFill="WHITE" />
+                  <Button layoutX="349.0" layoutY="149.0" mnemonicParsing="false" onAction="#usunPytanie" styleClass="join-button" text="Usuń" textFill="WHITE" />
+               </children>
+               <styleClass>
+                  <String fx:value="rounded-box" />
+                  <String fx:value="create-question-form" />
+               </styleClass>
+               <effect>
+                  <DropShadow color="#00000080" />
+               </effect>
+            </Pane>
+            <TreeView fx:id="treeViewQuestion" layoutX="55.0" layoutY="222.0" onContextMenuRequested="#selectQuestion" onMouseClicked="#selectQuestion" prefHeight="200.0" prefWidth="490.0" />
          </children>
+         <effect>
+            <DropShadow color="#00000080" />
+         </effect>
       </Pane>
    </children>
 </AnchorPane>
