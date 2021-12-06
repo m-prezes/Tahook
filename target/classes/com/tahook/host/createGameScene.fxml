@@ -6,9 +6,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tahook.host.CreateGameScene">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tahook.host.CreateGameScene">
    <children>
-      <Label layoutX="354.0" layoutY="290.0" text="Dodaj pytania" />
+      <Pane layoutX="100.0" layoutY="100.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;">
+         <children>
+            <Button layoutX="255.0" layoutY="338.0" mnemonicParsing="false" onAction="#switchToWaitingRoom" text="Stwórz gre" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

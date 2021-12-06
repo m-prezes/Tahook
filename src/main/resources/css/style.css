@@ -47,11 +47,34 @@
 }
 
 .play-again-button{
--fx-background-color: #b1b1b1;
+    -fx-background-color: #b1b1b1;
 }
 
 .podium-name-box{
     -fx-background-color: white;
     -fx-background-radius: 10px;
     -fx-border-radius: 10px;
+}
+.start-box{
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+.game-pin{
+    -fx-background-color: #f4f4f4;
+    -fx-background-radius: 10px;
+        -fx-border-radius: 10px;
+}
+
+
+
+.answer-stats-box{
+        -fx-background-color: #f4f4f4;
+        -fx-background-radius: 10px;
+        -fx-border-radius: 10px;
+}
+
+.answer-stat{
+    -fx-background-radius: 10px;
+     -fx-border-radius: 10px;
 }

@@ -10,14 +10,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class CreateGameScene {
+public class WaitingRoom {
     private Stage stage;
     private Scene scene;
     private Parent root;
 
 
-    public void switchToWaitingRoom(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("waitingRoom.fxml")));
+    public void switchToQuestionScene(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("questionScene.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
