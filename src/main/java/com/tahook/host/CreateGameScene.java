@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import org.json.simple.JSONArray;
 
 public class CreateGameScene {
     private Stage stage;
@@ -58,14 +59,15 @@ public class CreateGameScene {
         TreeItem<String> a_d = new TreeItem<>(q.getAnswer_d());
         question.getChildren().add(a_a);
         question.getChildren().add(a_b);
-        question.getChildren().add(a_b);
+        question.getChildren().add(a_d);
         question.getChildren().add(a_c);
         rootItem.getChildren().add(question);
     }
 
     public void addQuestion(ActionEvent event) throws Exception{
         Question question = new Question(tfQuestion.getText(),
-                tfAnswer_a.getText(), tfAnswer_b.getText(),tfAnswer_c.getText(),tfAnswer_d.getText());
+                tfAnswer_a.getText(), tfAnswer_b.getText(),tfAnswer_c.getText(),tfAnswer_d.getText(), 60);//TODO
+        System.out.println(question.getJSON());
         questionList.add(question);
         addQuestionToTreeView(question);
         tfQuestion.clear();
@@ -77,7 +79,7 @@ public class CreateGameScene {
 
     public void selectQuestion(){
         selectedItem = treeViewQuestion.getSelectionModel().getSelectedItem();
-        System.out.println(selectedItem.getValue());
+//        System.out.println(selectedItem.getValue());
         if(selectedItem != null && !selectedItem.getValue().equals("root")){
             if(selectedItem.getParent().getValue().equals("root")){
                 List<TreeItem<String>> children = selectedItem.getChildren();
@@ -106,11 +108,25 @@ public class CreateGameScene {
     }
 
     public void switchToWaitingRoom(ActionEvent event) throws IOException {
-        System.out.println(questionList);
+//      ZAMIST PRINTLN WYSLIJ DO SERWERA
+        System.out.println(prepareMessage(questionList));
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("waitingRoom.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+    public String prepareMessage(ObservableList<Question> questionList){
+        String message = "[";
+
+        for(Question question: questionList){
+            message += question.getJSON()+',';
+        }
+        if (message != null && message.length() > 0 && message.charAt(message.length() - 1) == ',') {
+            message = message.substring(0, message.length() - 1);
+        }
+        message+="]";
+
+        return message;
     }
 }
