@@ -22,4 +22,5 @@ public class NickScene {
         stage.setScene(scene);
         stage.show();
     }
+
 }

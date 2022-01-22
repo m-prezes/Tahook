@@ -34,6 +34,8 @@ Host::Host(int fd, int epollFd) : _epollFd(epollFd), _gameState(0), _questionAct
 {
     epoll_event ee{EPOLLIN | EPOLLRDHUP, {.ptr = this}};
     epoll_ctl(_epollFd, EPOLL_CTL_ADD, _fd, &ee);
+    string questionsRequest("Need questions!");
+    write(questionsRequest.c_str(), questionsRequest.length());
 }
 
 Host::~Host()

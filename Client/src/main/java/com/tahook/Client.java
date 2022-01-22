@@ -1,6 +1,7 @@
 package com.tahook;
 
 import java.net.*;
+import java.nio.charset.StandardCharsets;
 import java.io.*;
 
 public final class Client {
@@ -41,19 +42,23 @@ public final class Client {
         writer.println(message);
     }
 
-    public void read() {
+    public void read(String request) {
         try {
 
-            int character;
-            StringBuilder data = new StringBuilder();
+            byte[] bytearr = new byte[16];
+            while (true) {
+                int len = input.read(bytearr);
+                if (len == -1)
+                    break;
 
-            while ((character = reader.read()) != -1) {
-                data.append((char) character);
+                String s = new String(bytearr, StandardCharsets.UTF_8);
+                System.out.println(s);
+                if (s.substring(0, len - 1).equals(request)) {
+
+                }
             }
 
-            System.out.println(data);
-
-        } catch (IOException ex) {
+        } catch (Exception ex) {
 
             System.out.println("I/O error: " + ex.getMessage());
         }

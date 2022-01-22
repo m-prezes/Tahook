@@ -20,17 +20,17 @@ public class Main extends Application {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("startScene.fxml")));
             Scene scene = new Scene(root, 800, 600);
 
-//            Image icon = new Image("icon.png");
-//            stage.getIcons().add(icon);
+            // Image icon = new Image("icon.png");
+            // stage.getIcons().add(icon);
             stage.setTitle("Tahook");
             stage.setResizable(false);
 
             stage.setScene(scene);
             stage.show();
-        }catch (Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
 }

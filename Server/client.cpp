@@ -28,7 +28,7 @@ Client::Client(int fd, int epollFd) : _fd(fd), _epollFd(epollFd), _connectedToGa
 {
     epoll_event ee{EPOLLIN | EPOLLRDHUP, {.ptr = this}};
     epoll_ctl(_epollFd, EPOLL_CTL_ADD, _fd, &ee);
-    string nickRequest("Enter nick: ");
+    string nickRequest("Enter nick:");
     write(nickRequest.c_str(), nickRequest.length());
 }
 
