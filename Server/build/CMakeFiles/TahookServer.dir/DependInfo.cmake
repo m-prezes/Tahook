@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/mateusz/Desktop/test/Server/client.cpp" "/home/mateusz/Desktop/test/Server/build/CMakeFiles/TahookServer.dir/client.cpp.o"
-  "/home/mateusz/Desktop/test/Server/handler.cpp" "/home/mateusz/Desktop/test/Server/build/CMakeFiles/TahookServer.dir/handler.cpp.o"
-  "/home/mateusz/Desktop/test/Server/host.cpp" "/home/mateusz/Desktop/test/Server/build/CMakeFiles/TahookServer.dir/host.cpp.o"
-  "/home/mateusz/Desktop/test/Server/server.cpp" "/home/mateusz/Desktop/test/Server/build/CMakeFiles/TahookServer.dir/server.cpp.o"
+  "/home/mateusz/Desktop/Tahook/Server/client.cpp" "/home/mateusz/Desktop/Tahook/Server/build/CMakeFiles/TahookServer.dir/client.cpp.o"
+  "/home/mateusz/Desktop/Tahook/Server/handler.cpp" "/home/mateusz/Desktop/Tahook/Server/build/CMakeFiles/TahookServer.dir/handler.cpp.o"
+  "/home/mateusz/Desktop/Tahook/Server/host.cpp" "/home/mateusz/Desktop/Tahook/Server/build/CMakeFiles/TahookServer.dir/host.cpp.o"
+  "/home/mateusz/Desktop/Tahook/Server/server.cpp" "/home/mateusz/Desktop/Tahook/Server/build/CMakeFiles/TahookServer.dir/server.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

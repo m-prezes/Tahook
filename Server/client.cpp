@@ -16,6 +16,7 @@
 #include <iostream>
 #include <string>
 #include <string.h>
+#include <exception>
 
 #include "client.h"
 
@@ -134,7 +135,7 @@ void Client::sendAnswer(string mess)
                 }
             }
         }
-        catch (const exception)
+        catch (const exception &e)
         {
             string answerIsInvalid("Invalid answer format!");
             write(answerIsInvalid.c_str(), answerIsInvalid.length());

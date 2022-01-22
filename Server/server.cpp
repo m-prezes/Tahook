@@ -100,7 +100,7 @@ int main(int argc, char **argv)
     setReuseAddr(servFdForHosts);
     setReuseAddr(servFdForPlayers);
 
-    sockaddr_in serverAddrForHosts{.sin_family = AF_INET, .sin_port = htons((short)portForHosts), .sin_addr = {INADDR_ANY}};
+    sockaddr_in serverAddrForHosts{.sin_family = AF_INET, .sin_port = htons((short)portForHosts), .sin_addr = {INADDR_ANY}, .sin_zero = {0}};
     int res = bind(servFdForHosts, (sockaddr *)&serverAddrForHosts, sizeof(serverAddrForHosts));
     if (res)
         error(1, errno, "bind failed");
@@ -109,7 +109,7 @@ int main(int argc, char **argv)
     if (res)
         error(1, errno, "listen failed");
 
-    sockaddr_in serverAddrForPlayers{.sin_family = AF_INET, .sin_port = htons((short)portForPlayers), .sin_addr = {INADDR_ANY}};
+    sockaddr_in serverAddrForPlayers{.sin_family = AF_INET, .sin_port = htons((short)portForPlayers), .sin_addr = {INADDR_ANY}, .sin_zero = {0}};
     res = bind(servFdForPlayers, (sockaddr *)&serverAddrForPlayers, sizeof(serverAddrForPlayers));
     if (res)
         error(1, errno, "bind failed");

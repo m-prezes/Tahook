@@ -28,7 +28,7 @@ using namespace std;
 
 std::unordered_set<Host *> hosts;
 
-Host::Host(int fd, int epollFd) : _fd(fd), _epollFd(epollFd), _gameState(0), _questionActive(false)
+Host::Host(int fd, int epollFd) : _epollFd(epollFd), _gameState(0), _questionActive(false), _fd(fd)
 {
     epoll_event ee{EPOLLIN | EPOLLRDHUP, {.ptr = this}};
     epoll_ctl(_epollFd, EPOLL_CTL_ADD, _fd, &ee);
@@ -43,8 +43,8 @@ Host::~Host()
 
 int Host::fd() const { return _fd; }
 int Host::gameState() const { return _gameState; }
-string Host::pin() const { return _pin; };
-bool Host::questionActive() const { return _questionActive; };
+string Host::pin() const { return _pin; }
+bool Host::questionActive() const { return _questionActive; }
 
 void Host::handleEvent(uint32_t events)
 {
@@ -90,6 +90,7 @@ void Host::handleEvent(uint32_t events)
 
 void Host::setQuestions(string mess)
 {
+    cout << mess << endl; // [TODO] - pozniej wujebac ale teraz compiler ma problem bo unused
     try
     {
         currentQuestion = 0;
@@ -97,7 +98,7 @@ void Host::setQuestions(string mess)
         questions = json::parse(mess1);
         _gameState++;
     }
-    catch (const exception)
+    catch (const exception &e)
     {
         string questionIsInvalid("Cannot set question!");
         write(questionIsInvalid.c_str(), questionIsInvalid.length());
@@ -189,7 +190,7 @@ void Host::sendQuestion(string mess)
 
 void Host::timer()
 {
-    thread t([=]()
+    thread t([=, this]()
              {
                  time_t time_1;
                  time_t time_2;
@@ -205,7 +206,7 @@ void Host::timer()
                      }
                  }
 
-                 if (currentQuestion == questions.size() - 1)
+                 if (currentQuestion == int(questions.size() - 1))
                  {
                      _gameState++;
                  }

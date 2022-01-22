@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/mateusz/Desktop/test/Server
+CMAKE_SOURCE_DIR = /home/mateusz/Desktop/Tahook/Server
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/mateusz/Desktop/test/Server/build
+CMAKE_BINARY_DIR = /home/mateusz/Desktop/Tahook/Server/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/TahookServer.dir/depend.make
@@ -59,55 +59,55 @@ include CMakeFiles/TahookServer.dir/flags.make
 
 CMakeFiles/TahookServer.dir/client.cpp.o: CMakeFiles/TahookServer.dir/flags.make
 CMakeFiles/TahookServer.dir/client.cpp.o: ../client.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mateusz/Desktop/test/Server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/TahookServer.dir/client.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TahookServer.dir/client.cpp.o -c /home/mateusz/Desktop/test/Server/client.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mateusz/Desktop/Tahook/Server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/TahookServer.dir/client.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TahookServer.dir/client.cpp.o -c /home/mateusz/Desktop/Tahook/Server/client.cpp
 
 CMakeFiles/TahookServer.dir/client.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TahookServer.dir/client.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mateusz/Desktop/test/Server/client.cpp > CMakeFiles/TahookServer.dir/client.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mateusz/Desktop/Tahook/Server/client.cpp > CMakeFiles/TahookServer.dir/client.cpp.i
 
 CMakeFiles/TahookServer.dir/client.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TahookServer.dir/client.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mateusz/Desktop/test/Server/client.cpp -o CMakeFiles/TahookServer.dir/client.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mateusz/Desktop/Tahook/Server/client.cpp -o CMakeFiles/TahookServer.dir/client.cpp.s
 
 CMakeFiles/TahookServer.dir/handler.cpp.o: CMakeFiles/TahookServer.dir/flags.make
 CMakeFiles/TahookServer.dir/handler.cpp.o: ../handler.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mateusz/Desktop/test/Server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/TahookServer.dir/handler.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TahookServer.dir/handler.cpp.o -c /home/mateusz/Desktop/test/Server/handler.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mateusz/Desktop/Tahook/Server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/TahookServer.dir/handler.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TahookServer.dir/handler.cpp.o -c /home/mateusz/Desktop/Tahook/Server/handler.cpp
 
 CMakeFiles/TahookServer.dir/handler.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TahookServer.dir/handler.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mateusz/Desktop/test/Server/handler.cpp > CMakeFiles/TahookServer.dir/handler.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mateusz/Desktop/Tahook/Server/handler.cpp > CMakeFiles/TahookServer.dir/handler.cpp.i
 
 CMakeFiles/TahookServer.dir/handler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TahookServer.dir/handler.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mateusz/Desktop/test/Server/handler.cpp -o CMakeFiles/TahookServer.dir/handler.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mateusz/Desktop/Tahook/Server/handler.cpp -o CMakeFiles/TahookServer.dir/handler.cpp.s
 
 CMakeFiles/TahookServer.dir/host.cpp.o: CMakeFiles/TahookServer.dir/flags.make
 CMakeFiles/TahookServer.dir/host.cpp.o: ../host.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mateusz/Desktop/test/Server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/TahookServer.dir/host.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TahookServer.dir/host.cpp.o -c /home/mateusz/Desktop/test/Server/host.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mateusz/Desktop/Tahook/Server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/TahookServer.dir/host.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TahookServer.dir/host.cpp.o -c /home/mateusz/Desktop/Tahook/Server/host.cpp
 
 CMakeFiles/TahookServer.dir/host.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TahookServer.dir/host.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mateusz/Desktop/test/Server/host.cpp > CMakeFiles/TahookServer.dir/host.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mateusz/Desktop/Tahook/Server/host.cpp > CMakeFiles/TahookServer.dir/host.cpp.i
 
 CMakeFiles/TahookServer.dir/host.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TahookServer.dir/host.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mateusz/Desktop/test/Server/host.cpp -o CMakeFiles/TahookServer.dir/host.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mateusz/Desktop/Tahook/Server/host.cpp -o CMakeFiles/TahookServer.dir/host.cpp.s
 
 CMakeFiles/TahookServer.dir/server.cpp.o: CMakeFiles/TahookServer.dir/flags.make
 CMakeFiles/TahookServer.dir/server.cpp.o: ../server.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mateusz/Desktop/test/Server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/TahookServer.dir/server.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TahookServer.dir/server.cpp.o -c /home/mateusz/Desktop/test/Server/server.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mateusz/Desktop/Tahook/Server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/TahookServer.dir/server.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/TahookServer.dir/server.cpp.o -c /home/mateusz/Desktop/Tahook/Server/server.cpp
 
 CMakeFiles/TahookServer.dir/server.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TahookServer.dir/server.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mateusz/Desktop/test/Server/server.cpp > CMakeFiles/TahookServer.dir/server.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mateusz/Desktop/Tahook/Server/server.cpp > CMakeFiles/TahookServer.dir/server.cpp.i
 
 CMakeFiles/TahookServer.dir/server.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TahookServer.dir/server.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mateusz/Desktop/test/Server/server.cpp -o CMakeFiles/TahookServer.dir/server.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mateusz/Desktop/Tahook/Server/server.cpp -o CMakeFiles/TahookServer.dir/server.cpp.s
 
 # Object files for target TahookServer
 TahookServer_OBJECTS = \
@@ -125,7 +125,7 @@ TahookServer: CMakeFiles/TahookServer.dir/host.cpp.o
 TahookServer: CMakeFiles/TahookServer.dir/server.cpp.o
 TahookServer: CMakeFiles/TahookServer.dir/build.make
 TahookServer: CMakeFiles/TahookServer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mateusz/Desktop/test/Server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable TahookServer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mateusz/Desktop/Tahook/Server/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable TahookServer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/TahookServer.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -138,6 +138,6 @@ CMakeFiles/TahookServer.dir/clean:
 .PHONY : CMakeFiles/TahookServer.dir/clean
 
 CMakeFiles/TahookServer.dir/depend:
-	cd /home/mateusz/Desktop/test/Server/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/mateusz/Desktop/test/Server /home/mateusz/Desktop/test/Server /home/mateusz/Desktop/test/Server/build /home/mateusz/Desktop/test/Server/build /home/mateusz/Desktop/test/Server/build/CMakeFiles/TahookServer.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/mateusz/Desktop/Tahook/Server/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/mateusz/Desktop/Tahook/Server /home/mateusz/Desktop/Tahook/Server /home/mateusz/Desktop/Tahook/Server/build /home/mateusz/Desktop/Tahook/Server/build /home/mateusz/Desktop/Tahook/Server/build/CMakeFiles/TahookServer.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/TahookServer.dir/depend
 
