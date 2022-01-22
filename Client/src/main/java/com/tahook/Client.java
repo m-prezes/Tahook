@@ -38,7 +38,11 @@ public final class Client {
     }
 
     public void write(String message) {
-        writer.println(message);
+        try {
+            writer.println(message);
+        }catch (Exception e){
+            System.out.println("Nie udało się wysłać wiadomości: "+ message);
+        }
     }
 
     public void read() {

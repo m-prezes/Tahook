@@ -1,27 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tahook.host.CreateGameScene">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tahook.host.CreateGameScene">
    <children>
       <Pane layoutX="100.0" layoutY="50.0" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: white;" styleClass="rounded-box">
          <children>
             <Button layoutX="255.0" layoutY="440.0" mnemonicParsing="false" onAction="#switchToWaitingRoom" styleClass="join-button" text="Stwórz gre" textFill="WHITE" />
             <Pane layoutX="25.0" layoutY="14.0" prefHeight="200.0" prefWidth="550.0">
                <children>
-                  <Button layoutX="219.0" layoutY="149.0" mnemonicParsing="false" onAction="#addQuestion" styleClass="join-button" text="Dodaj pytanie" textFill="WHITE" />
+                  <Button layoutX="242.0" layoutY="149.0" mnemonicParsing="false" onAction="#addQuestion" styleClass="join-button" text="Dodaj pytanie" textFill="WHITE" />
                   <TextField fx:id="tfQuestion" layoutX="50.0" layoutY="21.0" prefHeight="30.0" prefWidth="450.0" promptText="Pytanie" />
-                  <TextField fx:id="tfAnswer_a" layoutX="67.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" promptText="Odpowiedź a" />
-                  <TextField fx:id="tfAnswer_b" layoutX="67.0" layoutY="101.0" prefHeight="30.0" prefWidth="200.0" promptText="Odpowiedź b" />
-                  <TextField fx:id="tfAnswer_c" layoutX="287.0" layoutY="60.0" prefHeight="30.0" prefWidth="200.0" promptText="Odpowiedź c" />
-                  <TextField fx:id="tfAnswer_d" layoutX="287.0" layoutY="101.0" prefHeight="30.0" prefWidth="200.0" promptText="Odpowiedź d" />
-                  <Button layoutX="129.0" layoutY="149.0" mnemonicParsing="false" onAction="#wyczyscPola" styleClass="join-button" text="Wyczyść" textFill="WHITE" />
-                  <Button layoutX="349.0" layoutY="149.0" mnemonicParsing="false" onAction="#usunPytanie" styleClass="join-button" text="Usuń" textFill="WHITE" />
+                  <TextField fx:id="tfAnswer_a" layoutX="67.0" layoutY="60.0" prefHeight="30.0" prefWidth="186.0" promptText="Odpowiedź a" />
+                  <TextField fx:id="tfAnswer_b" layoutX="67.0" layoutY="101.0" prefHeight="30.0" prefWidth="186.0" promptText="Odpowiedź b" />
+                  <TextField fx:id="tfAnswer_c" layoutX="287.0" layoutY="60.0" prefHeight="30.0" prefWidth="186.0" promptText="Odpowiedź c" />
+                  <TextField fx:id="tfAnswer_d" layoutX="287.0" layoutY="101.0" prefHeight="30.0" prefWidth="186.0" promptText="Odpowiedź d" />
+                  <Button layoutX="359.0" layoutY="149.0" mnemonicParsing="false" onAction="#wyczyscPola" styleClass="join-button" text="Wyczyść" textFill="WHITE" />
+                  <Button layoutX="452.0" layoutY="149.0" mnemonicParsing="false" onAction="#usunPytanie" styleClass="join-button" text="Usuń" textFill="WHITE" />
+                  <TextField fx:id="tfTime" layoutX="175.0" layoutY="149.0" prefHeight="25.0" prefWidth="43.0" text="60" />
+                  <Text layoutX="50.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Czas na odpowiedz [s]" />
+                  <RadioButton fx:id="tf_correct_a" layoutX="260.0" layoutY="67.0" mnemonicParsing="false" onAction="#getCorrectAnswer" selected="true">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="correctAns" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="tf_correct_b" layoutX="260.0" layoutY="108.0" mnemonicParsing="false" onAction="#getCorrectAnswer" toggleGroup="$correctAns" />
+                  <RadioButton fx:id="tf_correct_c" layoutX="482.0" layoutY="67.0" mnemonicParsing="false" onAction="#getCorrectAnswer" toggleGroup="$correctAns" />
+                  <RadioButton fx:id="tf_correct_d" layoutX="482.0" layoutY="108.0" mnemonicParsing="false" onAction="#getCorrectAnswer" toggleGroup="$correctAns" />
                </children>
                <styleClass>
                   <String fx:value="rounded-box" />

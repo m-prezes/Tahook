@@ -10,16 +10,18 @@ public class Question {
     private String answer_b;
     private String answer_c;
     private String answer_d;
-    private int anwser_time;
+    private String correctAnswer;
+    private int answer_time;
 
     public Question(String question, String answer_a, String answer_b, String answer_c, String answer_d,
-            int anwser_time) {
+            int answer_time, String correctAnswer) {
         this.question = question;
         this.answer_a = answer_a;
         this.answer_b = answer_b;
         this.answer_c = answer_c;
         this.answer_d = answer_d;
-        this.anwser_time = anwser_time;
+        this.answer_time = answer_time;
+        this.correctAnswer = correctAnswer;
     }
 
     public Question() {
@@ -28,7 +30,8 @@ public class Question {
         this.answer_b = null;
         this.answer_c = null;
         this.answer_d = null;
-        this.anwser_time = 60;
+        this.correctAnswer = null;
+        this.answer_time = 60;
     };
 
     public String getQuestion() {
@@ -71,12 +74,16 @@ public class Question {
         this.answer_d = answer_d;
     }
 
-    public int getAnwser_time() {
-        return anwser_time;
-    }
+    public int getAnswer_time() {return answer_time;}
 
     public void setAnswer_time(int anwser_time) {
-        this.anwser_time = anwser_time;
+        this.answer_time = anwser_time;
+    }
+
+    public String getCorrectAnswer() {return correctAnswer;}
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 
     public String getWholeQuestion() {
@@ -91,7 +98,8 @@ public class Question {
         response.put("anwser_b", this.answer_b);
         response.put("anwser_c", this.answer_c);
         response.put("anwser_d", this.answer_d);
-        response.put("anwser_time", this.anwser_time);
+        response.put("correctAnswer", this.correctAnswer);
+        response.put("anwser_time", this.answer_time * 1000);
         String jsonString = new JSONObject(response).toString();
 
         return jsonString;
