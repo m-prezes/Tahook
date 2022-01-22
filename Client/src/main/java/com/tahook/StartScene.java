@@ -16,6 +16,7 @@ public class StartScene {
     private Scene scene;
     private Parent root;
 
+
     public StartScene() {
         client = Client.getInstance();
     }

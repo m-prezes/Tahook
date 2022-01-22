@@ -1,5 +1,6 @@
 package com.tahook;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -15,7 +16,11 @@ public class RankingScene {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private Client client;
 
+    public RankingScene() {
+        client = Client.getInstance();
+    }
 
     public void switchToPodiumScene(MouseEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("podiumScene.fxml")));
