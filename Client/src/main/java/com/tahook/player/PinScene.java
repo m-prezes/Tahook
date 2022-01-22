@@ -1,6 +1,8 @@
 package com.tahook.player;
 
+import com.tahook.Client;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -14,6 +16,9 @@ public class PinScene {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private Client client;
+
+    public PinScene() {client = Client.getInstance();}
 
     public void switchToNickScene(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("waitingForHostScene.fxml")));

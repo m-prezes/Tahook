@@ -1,5 +1,7 @@
 package com.tahook.player;
 
+import com.tahook.Client;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -14,6 +16,9 @@ public class WaitingScene {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private Client client;
+
+    public WaitingScene() {client = Client.getInstance();}
 
 
     public void switchToQuestionScene(MouseEvent event) throws IOException {
