@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
-import org.json.simple.JSONArray;
 
 public class CreateGameScene {
     private Stage stage;
@@ -51,7 +50,7 @@ public class CreateGameScene {
         selectedItem = null;
     }
 
-    public void addQuestionToTreeView(Question q) throws Exception{
+    public void addQuestionToTreeView(Question q) throws Exception {
         TreeItem<String> question = new TreeItem<>(q.getQuestion());
         TreeItem<String> a_a = new TreeItem<>(q.getAnswer_a());
         TreeItem<String> a_b = new TreeItem<>(q.getAnswer_b());
@@ -64,9 +63,9 @@ public class CreateGameScene {
         rootItem.getChildren().add(question);
     }
 
-    public void addQuestion(ActionEvent event) throws Exception{
+    public void addQuestion(ActionEvent event) throws Exception {
         Question question = new Question(tfQuestion.getText(),
-                tfAnswer_a.getText(), tfAnswer_b.getText(),tfAnswer_c.getText(),tfAnswer_d.getText(), 60);//TODO
+                tfAnswer_a.getText(), tfAnswer_b.getText(), tfAnswer_c.getText(), tfAnswer_d.getText(), 60);// TODO
         System.out.println(question.getJSON());
         questionList.add(question);
         addQuestionToTreeView(question);
@@ -77,11 +76,11 @@ public class CreateGameScene {
         tfAnswer_d.clear();
     };
 
-    public void selectQuestion(){
+    public void selectQuestion() {
         selectedItem = treeViewQuestion.getSelectionModel().getSelectedItem();
-//        System.out.println(selectedItem.getValue());
-        if(selectedItem != null && !selectedItem.getValue().equals("root")){
-            if(selectedItem.getParent().getValue().equals("root")){
+        // System.out.println(selectedItem.getValue());
+        if (selectedItem != null && !selectedItem.getValue().equals("root")) {
+            if (selectedItem.getParent().getValue().equals("root")) {
                 List<TreeItem<String>> children = selectedItem.getChildren();
                 tfQuestion.setText(selectedItem.getValue());
                 tfAnswer_a.setText(children.get(0).getValue());
@@ -92,7 +91,7 @@ public class CreateGameScene {
         }
     }
 
-    public void wyczyscPola(ActionEvent event) throws IOException{
+    public void wyczyscPola(ActionEvent event) throws IOException {
         tfQuestion.clear();
         tfAnswer_a.clear();
         tfAnswer_b.clear();
@@ -100,7 +99,7 @@ public class CreateGameScene {
         tfAnswer_d.clear();
     }
 
-    public void usunPytanie(ActionEvent event) throws IOException{
+    public void usunPytanie(ActionEvent event) throws IOException {
         questionList.remove(rootItem.getChildren().indexOf(selectedItem));
         rootItem.getChildren().remove(selectedItem);
         selectedItem = null;
@@ -108,24 +107,25 @@ public class CreateGameScene {
     }
 
     public void switchToWaitingRoom(ActionEvent event) throws IOException {
-//      ZAMIST PRINTLN WYSLIJ DO SERWERA
+        // ZAMIST PRINTLN WYSLIJ DO SERWERA
         System.out.println(prepareMessage(questionList));
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("waitingRoom.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-    public String prepareMessage(ObservableList<Question> questionList){
+
+    public String prepareMessage(ObservableList<Question> questionList) {
         String message = "[";
 
-        for(Question question: questionList){
-            message += question.getJSON()+',';
+        for (Question question : questionList) {
+            message += question.getJSON() + ',';
         }
         if (message != null && message.length() > 0 && message.charAt(message.length() - 1) == ',') {
             message = message.substring(0, message.length() - 1);
         }
-        message+="]";
+        message += "]";
 
         return message;
     }

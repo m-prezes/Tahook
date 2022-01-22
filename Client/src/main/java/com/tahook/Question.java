@@ -2,9 +2,7 @@ package com.tahook;
 
 import java.util.LinkedHashMap;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-
 
 public class Question {
     private String question;
@@ -14,7 +12,8 @@ public class Question {
     private String answer_d;
     private int anwser_time;
 
-    public Question(String question, String answer_a, String answer_b, String answer_c, String answer_d, int anwser_time) {
+    public Question(String question, String answer_a, String answer_b, String answer_c, String answer_d,
+            int anwser_time) {
         this.question = question;
         this.answer_a = answer_a;
         this.answer_b = answer_b;
@@ -22,7 +21,8 @@ public class Question {
         this.answer_d = answer_d;
         this.anwser_time = anwser_time;
     }
-    public Question(){
+
+    public Question() {
         this.question = null;
         this.answer_a = null;
         this.answer_b = null;
@@ -30,7 +30,6 @@ public class Question {
         this.answer_d = null;
         this.anwser_time = 60;
     };
-
 
     public String getQuestion() {
         return question;
@@ -80,12 +79,12 @@ public class Question {
         this.anwser_time = anwser_time;
     }
 
-    public String getWholeQuestion(){
-        return this.question + " " + this.answer_a + " " + this.answer_b + " "+
+    public String getWholeQuestion() {
+        return this.question + " " + this.answer_a + " " + this.answer_b + " " +
                 this.answer_c + " " + this.answer_d;
     }
 
-    public String getJSON(){
+    public String getJSON() {
         LinkedHashMap<String, Object> response = new LinkedHashMap<String, Object>();
         response.put("question", this.question);
         response.put("anwser_a", this.answer_a);
