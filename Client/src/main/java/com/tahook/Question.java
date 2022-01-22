@@ -94,12 +94,12 @@ public class Question {
     public String getJSON() {
         LinkedHashMap<String, Object> response = new LinkedHashMap<String, Object>();
         response.put("question", this.question);
-        response.put("anwser_a", this.answer_a);
-        response.put("anwser_b", this.answer_b);
-        response.put("anwser_c", this.answer_c);
-        response.put("anwser_d", this.answer_d);
+        response.put("answer_a", this.answer_a);
+        response.put("answer_b", this.answer_b);
+        response.put("answer_c", this.answer_c);
+        response.put("answer_d", this.answer_d);
         response.put("correctAnswer", this.correctAnswer);
-        response.put("anwser_time", this.answer_time * 1000);
+        response.put("answer_time", this.answer_time * 1000);
         String jsonString = new JSONObject(response).toString();
 
         return jsonString;
