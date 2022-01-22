@@ -1,0 +1,3 @@
+/home/mateusz/Desktop/test/Server/build/CMakeFiles/edit_cache.dir
+/home/mateusz/Desktop/test/Server/build/CMakeFiles/rebuild_cache.dir
+/home/mateusz/Desktop/test/Server/build/CMakeFiles/TahookServer.dir
