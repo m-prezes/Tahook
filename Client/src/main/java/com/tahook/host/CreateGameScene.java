@@ -1,5 +1,6 @@
 package com.tahook.host;
 
+import com.tahook.Client;
 import com.tahook.Question;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class CreateGameScene {
+    private Client client;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -48,6 +50,7 @@ public class CreateGameScene {
         treeViewQuestion.setRoot(rootItem);
         treeViewQuestion.setShowRoot(false);
         selectedItem = null;
+        client = Client.getInstance();
     }
 
     public void addQuestionToTreeView(Question q) throws Exception {
@@ -109,6 +112,10 @@ public class CreateGameScene {
     public void switchToWaitingRoom(ActionEvent event) throws IOException {
         // ZAMIST PRINTLN WYSLIJ DO SERWERA
         System.out.println(prepareMessage(questionList));
+        client.write(prepareMessage(questionList));
+
+        client.write("pin");
+
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("waitingRoom.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

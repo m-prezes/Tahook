@@ -92,12 +92,12 @@ void Host::handleEvent(uint32_t events)
 
 void Host::setQuestions(string mess)
 {
-    cout << mess << endl; // [TODO] - pozniej wujebac ale teraz compiler ma problem bo unused
+    // cout << mess << endl; // [TODO] - pozniej wujebac ale teraz compiler ma problem bo unused
     try
     {
         currentQuestion = 0;
-        string mess1 = R"([{"question":"aaaa","anwser_a":"a","anwser_b":"b","anwser_c":"c","anwser_d":"d", "time":20000,"correct":"a"},{"question":"bbbb","anwser_a":"a","anwser_b":"b","anwser_c":"c","anwser_d":"d", "time":20000,"correct":"a"}])";
-        questions = json::parse(mess1);
+        // string mess1 = R"([{"question":"aaaa","anwser_a":"a","anwser_b":"b","anwser_c":"c","anwser_d":"d", "time":20000,"correct":"a"},{"question":"bbbb","anwser_a":"a","anwser_b":"b","anwser_c":"c","anwser_d":"d", "time":20000,"correct":"a"}])";
+        questions = json::parse(mess);
         _gameState++;
     }
     catch (const exception &e)

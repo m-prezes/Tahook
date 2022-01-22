@@ -11,11 +11,18 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class StartScene {
+    private Client client;
     private Stage stage;
     private Scene scene;
     private Parent root;
 
+    public StartScene() {
+        client = Client.getInstance();
+    }
+
     public void createNewGame(MouseEvent event) throws IOException {
+
+        client.joinServer(1111);
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("host/createGameScene.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -24,6 +31,8 @@ public class StartScene {
     }
 
     public void joinGame(MouseEvent event) throws IOException {
+        client.joinServer(2222);
+        // client.read();
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("player/nickScene.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

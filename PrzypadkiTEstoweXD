@@ -1,0 +1,76 @@
+gracz:
+	- nadaj imie (klasa ma pole imie)
+	- podaj pin (podaje pin i do listy hosta)
+	---------
+	- ROZPOCZYNA SIE GRA:
+		-otrzymać pytanie i warianty i czas
+		- odpowiedz
+		- otrzymać ranking i wyniki
+		- KONIEC: PODIUM
+	
+	
+host:
+	- dodaj pytania i odpowiedzi i czas
+	- stworz gre - otrzynmanine pinu
+	- wyświetlanie nzawy graczy
+	- rozpocznij gre
+	- otzrymaj pytanie  i odpowiedzi oraz na bieżąco ilość udzielonych odp.
+	- otrzymać ranking i ilość odpowiedzi 
+	- KONIEC: podium
+	
+	
+DODATKOWO:
+	- punkty dla graczy
+	- 2/3 odpowiedzi przerywa możliwość udzielenia odp.
+	
+	
+	
+	
+1. Host klika start
+2. Pojawia się pytanie i odp. na okręslony czas:
+	a) gracz może odpowiedzieć
+	b) jeśli odpowie 2/3 graczy to przerywamy
+3. Wyświetl wynik
+4. Host klika next
+
+
+
+
+[{"question":"aaaa","anwser_a":"a","anwser_b":"b","anwser_c":"c","anwser_d":"d", "time":20000,"correct":"a"},{"question":"bbbb","anwser_a":"a","anwser_b":"b","anwser_c":"c","anwser_d":"d", "time":20000,"correct":"a"}]
+
+{"question":0,"answer":"a"}
+{"question":1,"answer":"a"}
+
+
+
+
+
+
+
+PRZEBIEG GRY:
+	- host łączy się z portem dla hostów - STATE 0
+	- host tworzy pytania - STATE 1
+	- host tworzy poczekalnie - STATE 2
+	- host rozpoczyna gre - STATE 3
+	- host otrzymuje pytanie
+	- host otrzymuje ranking
+	- host kończy gre
+	
+
+	- gracz łączy się z portem dla graczy
+	- gracz podaje nick do gry
+	- gracz podaje pin do gry
+	- gracz otrzymuje pytanie
+	- gracz odpowiada na nie
+	- gracz otrzymuje ranking
+
+
+
+
+TODO:
+	- gracz tylko jedna odpowiedz na runde
+	- host zaznacza poprawne odpowiedzi i czas
+
+
+
+
