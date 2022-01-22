@@ -16,8 +16,8 @@ public class NickScene {
     private Parent root;
 
     public void switchToWaitingForHostScene(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("waitingForHostScene.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("pinScene.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

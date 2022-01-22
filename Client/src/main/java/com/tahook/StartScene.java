@@ -17,15 +17,15 @@ public class StartScene {
 
     public void createNewGame(MouseEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("host/createGameScene.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
     public void joinGame(MouseEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("player/pinScene.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("player/nickScene.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
