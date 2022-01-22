@@ -26,6 +26,8 @@
 using json = nlohmann::json;
 using namespace std;
 
+int GAMEPIN = 123456;
+
 std::unordered_set<Host *> hosts;
 
 Host::Host(int fd, int epollFd) : _epollFd(epollFd), _gameState(0), _questionActive(false), _fd(fd)
@@ -109,7 +111,8 @@ void Host::setPin(string mess) // [TODO]: dynimiczny pin
 {
     if (mess.substr(0, mess.length() - 1) == "pin") //[TODO]: -1 bo nowa lina w terminalu
     {
-        _pin = "123456";
+        _pin = to_string(GAMEPIN);
+        GAMEPIN++;
         write(_pin.c_str(), strlen(_pin.c_str()));
         _gameState++;
     }
