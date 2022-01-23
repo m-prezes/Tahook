@@ -1,17 +1,28 @@
 package com.tahook;
 
-import java.net.*;
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
+import java.nio.channels.SocketChannel;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.io.*;
+import java.util.Iterator;
+import java.util.Objects;
 
-public final class Client {
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class Client {
     private final static Client INSTANCE = new Client();
-    private String hostName = "localhost";
-    private Socket socket;
-    private OutputStream output;
-    private PrintWriter writer;
-    private InputStream input;
-    private InputStreamReader reader;
+    Stage stage;
+    Selector selector;
+    SocketChannel clientChanel;
+    String data;
 
     private Client() {
     }
@@ -20,51 +31,101 @@ public final class Client {
         return INSTANCE;
     }
 
-    public void joinServer(int port) {
-        try {
-            socket = new Socket(hostName, port);
-            output = socket.getOutputStream();
-            writer = new PrintWriter(output, true);
-            input = socket.getInputStream();
-            reader = new InputStreamReader(input);
+    public String getData() {
+        return data;
+    }
 
-        } catch (UnknownHostException ex) {
+    public void joinGame(Stage s, int pin) throws IOException {
+        stage = s;
+        selector = Selector.open();
+        clientChanel = SocketChannel.open();
+        clientChanel.connect(new InetSocketAddress("localhost", pin));
+        clientChanel.configureBlocking(false);
+        clientChanel.register(selector, SelectionKey.OP_READ);
+    }
 
-            System.out.println("Server not found: " + ex.getMessage());
+    public void work() throws IOException {
 
-        } catch (IOException ex) {
+        while (true) {
+            // select() can block!
+            if (selector.select() == 0) {
+                continue;
+            }
 
-            System.out.println("I/O error: " + ex.getMessage());
+            Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
+            while (iterator.hasNext()) {
+                SelectionKey key = (SelectionKey) iterator.next();
+                iterator.remove();
+                if (key.isReadable()) {
+                    SocketChannel channel = (SocketChannel) key.channel();
+                    ByteBuffer buffer = ByteBuffer.allocate(1024);
+                    int byteRead = channel.read(buffer);
+                    System.out.println(byteRead);
+
+                    String str = new String(buffer.array(), "UTF-8");
+                    str = str.substring(0, byteRead);
+                    System.out.println(str);
+
+                    if (str.equals("Enter nick:")) {
+                        nextScene("player/nickScene.fxml");
+                    } else if (str.equals("Enter pin:")) {
+                        nextScene("player/pinScene.fxml");
+                    } else if (str.equals("Joined game")) {
+                        nextScene("player/waitingForHostScene.fxml");
+                    } else if (str.equals("Need questions!")) {
+                        nextScene("host/createGameScene.fxml");
+                    } else if (str.substring(0, 4).equals("PIN:")) {
+                        data = str.substring(4, str.length());
+                        nextScene("host/waitingRoom.fxml");
+                    }
+
+                }
+            }
         }
+    }
+
+    void nextScene(String template) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+
+                Parent root;
+                try {
+                    root = FXMLLoader.load(Objects
+                            .requireNonNull(getClass().getResource(template)));
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
     }
 
     public void write(String message) {
         try {
-            writer.println(message);
-        }catch (Exception e){
-            System.out.println("Nie udało się wysłać wiadomości: "+ message);
+            clientChanel.write(str_to_bb(message + "\n", StandardCharsets.UTF_8));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
+
     }
 
-    public void read(String request) {
-        try {
+    public static ByteBuffer str_to_bb(String msg, Charset charset) {
+        return ByteBuffer.wrap(msg.getBytes(charset));
+    }
 
-            byte[] bytearr = new byte[16];
-            while (true) {
-                int len = input.read(bytearr);
-                if (len == -1)
-                    break;
-
-                String s = new String(bytearr, StandardCharsets.UTF_8);
-                System.out.println(s);
-                if (s.substring(0, len - 1).equals(request)) {
-
-                }
-            }
-
-        } catch (Exception ex) {
-
-            System.out.println("I/O error: " + ex.getMessage());
+    public static String bb_to_str(ByteBuffer buffer, Charset charset) {
+        byte[] bytes;
+        if (buffer.hasArray()) {
+            bytes = buffer.array();
+        } else {
+            bytes = new byte[buffer.remaining()];
+            buffer.get(bytes);
         }
+        return new String(bytes, charset);
     }
 }

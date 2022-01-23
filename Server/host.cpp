@@ -67,17 +67,13 @@ void Host::handleEvent(uint32_t events)
             }
             else if (_gameState == 1)
             {
-                setPin(mess);
+                startGame(mess);
             }
             else if (_gameState == 2)
             {
-                startGame(mess);
-            }
-            else if (_gameState == 3)
-            {
                 sendQuestion(mess);
             }
-            else if (_gameState == 4)
+            else if (_gameState == 3)
             {
                 endGame(mess);
             }
@@ -100,6 +96,7 @@ void Host::setQuestions(string mess)
         currentQuestion = 0;
         // string mess1 = R"([{"question":"aaaa","anwser_a":"a","anwser_b":"b","anwser_c":"c","anwser_d":"d", "time":20000,"correct":"a"},{"question":"bbbb","anwser_a":"a","anwser_b":"b","anwser_c":"c","anwser_d":"d", "time":20000,"correct":"a"}])";
         questions = json::parse(mess);
+        setPin();
         _gameState++;
     }
     catch (const exception &e)
@@ -109,20 +106,12 @@ void Host::setQuestions(string mess)
     }
 }
 
-void Host::setPin(string mess) // [TODO]: dynimiczny pin
+void Host::setPin()
 {
-    if (mess.substr(0, mess.length() - 1) == "pin") //[TODO]: -1 bo nowa lina w terminalu
-    {
-        _pin = to_string(GAMEPIN);
-        GAMEPIN++;
-        write(_pin.c_str(), strlen(_pin.c_str()));
-        _gameState++;
-    }
-    else
-    {
-        string pinRequest("Need pin request!");
-        write(pinRequest.c_str(), pinRequest.length());
-    }
+    _pin = to_string(GAMEPIN);
+    GAMEPIN++;
+    string pinResponse("PIN:" + _pin);
+    write(pinResponse.c_str(), strlen(pinResponse.c_str()));
 }
 
 void Host::startGame(string mess)

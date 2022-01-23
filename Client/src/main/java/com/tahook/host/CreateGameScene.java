@@ -23,7 +23,7 @@ public class CreateGameScene {
     private Scene scene;
     private Parent root;
     private ObservableList<Question> questionList;
-    private String correctAns="a";
+    private String correctAns = "a";
 
     @FXML
     private TextField tfQuestion;
@@ -76,10 +76,11 @@ public class CreateGameScene {
     }
 
     public void addQuestion(ActionEvent event) throws Exception {
-        Integer time = Integer.parseInt(tfTime.getText());//TODO
-//        System.out.println(correctAns);
+        Integer time = Integer.parseInt(tfTime.getText());// TODO
+        // System.out.println(correctAns);
         Question question = new Question(tfQuestion.getText(),
-                tfAnswer_a.getText(), tfAnswer_b.getText(), tfAnswer_c.getText(), tfAnswer_d.getText(), time, correctAns);// TODO
+                tfAnswer_a.getText(), tfAnswer_b.getText(), tfAnswer_c.getText(), tfAnswer_d.getText(), time,
+                correctAns);// TODO
         System.out.println(question.getJSON());
         questionList.add(question);
         addQuestionToTreeView(question);
@@ -93,7 +94,7 @@ public class CreateGameScene {
         tf_correct_b.setSelected(false);
         tf_correct_c.setSelected(false);
         tf_correct_d.setSelected(false);
-        correctAns="a";
+        correctAns = "a";
     };
 
     public void selectQuestion() {
@@ -123,7 +124,6 @@ public class CreateGameScene {
                         break;
                 }
 
-
             }
         }
     }
@@ -143,8 +143,7 @@ public class CreateGameScene {
     }
 
     public void usunPytanie(ActionEvent event) throws IOException {
-        if (selectedItem != null)
-        {
+        if (selectedItem != null) {
             questionList.remove(rootItem.getChildren().indexOf(selectedItem));
             rootItem.getChildren().remove(selectedItem);
             selectedItem = null;
@@ -157,8 +156,6 @@ public class CreateGameScene {
 
         client.write(prepareMessage(questionList));
 
-        client.write("pin");
-
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("waitingRoom.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -166,17 +163,14 @@ public class CreateGameScene {
         stage.show();
     }
 
-    public void getCorrectAnswer(ActionEvent event){
-        if(tf_correct_a.isSelected()){
+    public void getCorrectAnswer(ActionEvent event) {
+        if (tf_correct_a.isSelected()) {
             correctAns = "a";
-        }
-        else if(tf_correct_b.isSelected()){
+        } else if (tf_correct_b.isSelected()) {
             correctAns = "b";
-        }
-        else if(tf_correct_c.isSelected()){
+        } else if (tf_correct_c.isSelected()) {
             correctAns = "c";
-        }
-        else if(tf_correct_d.isSelected()){
+        } else if (tf_correct_d.isSelected()) {
             correctAns = "d";
         }
         System.out.println(correctAns);

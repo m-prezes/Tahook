@@ -14,7 +14,7 @@
          <children>
             <Pane layoutX="24.0" layoutY="20.0" prefHeight="60.0" prefWidth="200.0" styleClass="game-pin" stylesheets="@../../../css/style.css">
                <children>
-                  <Label layoutX="21.0" layoutY="8.0" text="PIN: 123456">
+                  <Label fx:id="pinLabel" layoutX="21.0" layoutY="8.0" text="PIN: 123456">
                      <font>
                         <Font size="30.0" />
                      </font>

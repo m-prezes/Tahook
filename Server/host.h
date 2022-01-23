@@ -39,7 +39,7 @@ public:
     void write(const char *buffer, int count);
 
     void setQuestions(string mess);
-    void setPin(string mess);
+    void setPin();
     void startGame(string mess);
     void sendQuestion(string mess);
     void showRank();

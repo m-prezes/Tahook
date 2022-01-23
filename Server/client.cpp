@@ -47,6 +47,7 @@ void Client::handleEvent(uint32_t events)
     {
         char buffer[256];
         ssize_t count = read(_fd, buffer, 256);
+        printf("%d: %.*s", _fd, (int)count, buffer);
         if (count > 0)
         {
 
@@ -65,8 +66,6 @@ void Client::handleEvent(uint32_t events)
             {
                 sendAnswer(mess);
             }
-
-            printf("%d: %.*s", _fd, (int)count, buffer);
         }
         else
             events |= EPOLLERR;
@@ -80,7 +79,7 @@ void Client::handleEvent(uint32_t events)
 void Client::setNick(string nickName)
 {
     nick = nickName.substr(0, nickName.length() - 1); // [TODO]: -1 bo nowa linia w terminalu
-    string pinRequest("Enter pin: ");
+    string pinRequest("Enter pin:");
     write(pinRequest.c_str(), pinRequest.length());
 }
 
@@ -91,7 +90,7 @@ void Client::joinGame(string pin)
     {
         Host *h = *it;
         it++;
-        if (h->pin() == pin.substr(0, pin.length() - 1) && h->gameState() == 2) // [TODO]: -1 bo nowa linia w terminalu
+        if (h->pin() == pin.substr(0, pin.length() - 1) && h->gameState() == 1) // [TODO]: -1 bo nowa linia w terminalu
         {
             h->players.insert(this);
             _host = h;
@@ -164,6 +163,7 @@ void Client::remove()
 {
     printf("removing %d\n", _fd);
     _host->players.erase(this);
+    _host = nullptr;
     delete this;
 }
 

@@ -13,12 +13,13 @@ public class StartScene {
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        TestClient c = new TestClient(stage, 1111);
+        Client client = Client.getInstance();
+        client.joinGame(stage, 1111);
 
         Thread thread = new Thread() {
             public void run() {
                 try {
-                    c.work();
+                    client.work();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -32,12 +33,13 @@ public class StartScene {
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        TestClient c = new TestClient(stage, 2222);
+        Client client = Client.getInstance();
+        client.joinGame(stage, 2222);
 
         Thread thread = new Thread() {
             public void run() {
                 try {
-                    c.work();
+                    client.work();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

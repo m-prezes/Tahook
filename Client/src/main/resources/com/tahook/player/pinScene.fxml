@@ -11,7 +11,7 @@
    <children>
       <Pane layoutX="276.0" layoutY="280.0" prefHeight="140.0" prefWidth="250.0" styleClass="join-cointainer">
          <children>
-            <TextField alignment="CENTER" focusTraversable="false" layoutX="25.0" layoutY="24.0" prefHeight="40.0" prefWidth="200.0" promptText="Kod PIN gry" />
+            <TextField fx:id="pinField" alignment="CENTER" focusTraversable="false" layoutX="25.0" layoutY="24.0" prefHeight="40.0" prefWidth="200.0" promptText="Kod PIN gry" />
             <Button layoutX="25.0" layoutY="76.0" mnemonicParsing="false" onAction="#switchToNickScene" prefHeight="40.0" prefWidth="200.0" styleClass="join-button" text="Wprowadź" textFill="WHITE" />
          </children>
       </Pane>
