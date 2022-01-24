@@ -19,7 +19,9 @@ public class QuestionScene {
     private Parent root;
     private Client client;
 
-    public QuestionScene() {client = Client.getInstance();}
+    public QuestionScene() {
+        client = Client.getInstance();
+    }
 
     public void handleAnswer(MouseEvent event) throws IOException {
         switchToWaitingScene(event);
@@ -27,13 +29,10 @@ public class QuestionScene {
 
     public void switchToWaitingScene(MouseEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("waitingScene.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-
-
-
 
 }

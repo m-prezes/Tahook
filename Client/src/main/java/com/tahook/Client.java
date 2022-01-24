@@ -90,15 +90,17 @@ public class Client {
                     // zczytywanie po jednym znaku i zapisywanie do inputBuffora
                     ByteBuffer buffer = ByteBuffer.allocate(1);
                     int byteRead = channel.read(buffer);
-                    if (buffer.array()[0] != (byte) '\n') {
-                        inputBuffer += new String(buffer.array(), "UTF-8");
-                    } else {
-                        String str = inputBuffer;
-                        inputBuffer = "";
-                        System.out.println(str);
+                    if (byteRead > 0) {
+                        if (buffer.array()[0] != (byte) '\n') {
+                            inputBuffer += new String(buffer.array(), "UTF-8");
+                        } else {
+                            String str = inputBuffer;
+                            inputBuffer = "";
+                            System.out.println(str);
 
-                        handleMessage(str);
+                            handleMessage(str);
 
+                        }
                     }
 
                 }
@@ -147,7 +149,10 @@ public class Client {
             } else if (str.equals("Joined game")) {
                 gamestate++;
                 nextScene("player/waitingForHostScene.fxml");
-
+            } else if (gamestate == 1) {
+                System.out.println(str);
+                question = str.substring(9, str.length());
+                nextScene("player/questionScene.fxml");
             }
         }
     }

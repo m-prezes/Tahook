@@ -156,7 +156,7 @@ void Host::sendQuestion(string mess)
             currAnswers = 0;
             auto &el = questions[currentQuestion];
             string messageQuestion = "question:" + el.dump() + "\n";
-            sendToAllPlayers(el.dump().c_str(), el.dump().length());
+            sendToAllPlayers(messageQuestion.c_str(), messageQuestion.length());
             write(messageQuestion.c_str(), messageQuestion.length());
             _questionActive = true;
             timer();
