@@ -54,30 +54,21 @@ void Host::handleEvent(uint32_t events)
 {
     if (events & EPOLLIN)
     {
-        char buffer[256];
-        ssize_t count = read(_fd, buffer, 256);
+        char buffer[1];
+        ssize_t count = read(_fd, buffer, 1);
         if (count > 0)
         {
-            string mess(buffer);
-            mess = mess.substr(0, count);
-
-            if (_gameState == 0)
+            if (buffer[0] != '\n')
             {
-                setQuestions(mess);
+                _inputBuffer += buffer[0];
             }
-            else if (_gameState == 1)
+            else
             {
-                startGame(mess);
+                string mess = _inputBuffer;
+                _inputBuffer = "";
+                handleHostGame(mess);
+                cout << _fd << ": " << mess << endl;
             }
-            else if (_gameState == 2)
-            {
-                sendQuestion(mess);
-            }
-            else if (_gameState == 3)
-            {
-                endGame(mess);
-            }
-            printf("%d: %.*s", _fd, (int)count, buffer);
         }
         else
             events |= EPOLLERR;
@@ -88,13 +79,31 @@ void Host::handleEvent(uint32_t events)
     }
 }
 
+void Host::handleHostGame(string mess)
+{
+    if (_gameState == 0)
+    {
+        setQuestions(mess);
+    }
+    else if (_gameState == 1)
+    {
+        startGame(mess);
+    }
+    else if (_gameState == 2)
+    {
+        sendQuestion(mess);
+    }
+    else if (_gameState == 3)
+    {
+        endGame(mess);
+    }
+}
+
 void Host::setQuestions(string mess)
 {
-    // cout << mess << endl; // [TODO] - pozniej wujebac ale teraz compiler ma problem bo unused
     try
     {
         currentQuestion = 0;
-        // string mess1 = R"([{"question":"aaaa","anwser_a":"a","anwser_b":"b","anwser_c":"c","anwser_d":"d", "time":20000,"correct":"a"},{"question":"bbbb","anwser_a":"a","anwser_b":"b","anwser_c":"c","anwser_d":"d", "time":20000,"correct":"a"}])";
         questions = json::parse(mess);
         setPin();
         _gameState++;
@@ -116,13 +125,13 @@ void Host::setPin()
 
 void Host::startGame(string mess)
 {
-    if (mess.substr(0, mess.length() - 1) == "start") //[TODO]: -1 bo nowa lina w terminalu
+    if (mess == "start")
     {
         if (players.size() > 1)
         {
             string gameStartedMessage("Start game\n");
             write(gameStartedMessage.c_str(), gameStartedMessage.length());
-            sendQuestion("send "); //[TODO]: usunac spacje
+            sendQuestion("send");
             _gameState++;
         }
         else
@@ -142,7 +151,7 @@ void Host::sendQuestion(string mess)
 {
     if (!_questionActive)
     {
-        if (mess.substr(0, mess.length() - 1) == "send") //[TODO]: -1 bo nowa lina w terminalu
+        if (mess == "send")
         {
             currAnswers = 0;
             auto &el = questions[currentQuestion];
@@ -215,19 +224,12 @@ void Host::showRank()
 
 void Host::endGame(string mess)
 {
-    if (mess.substr(0, mess.length() - 1) == "end") //[TODO]: -1 bo nowa lina w terminalu
+    if (mess == "end")
     {
         string endInfo("Game has ended!\n");
         write(endInfo.c_str(), endInfo.length());
+        sendToAllPlayers(endInfo.c_str(), endInfo.length());
 
-        auto it = players.begin();
-        while (it != players.end())
-        {
-            Client *player = *it;
-            it++;
-            player->write(endInfo.c_str(), endInfo.length());
-            player->_connectedToGame = false;
-        }
         remove();
     }
     else

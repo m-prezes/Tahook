@@ -17,6 +17,7 @@ class Host : public Handler
     int _gameState;
     string _pin;
     atomic<bool> _questionActive;
+    string _inputBuffer = "";
 
 public:
     int _fd;
@@ -38,6 +39,7 @@ public:
     virtual void handleEvent(uint32_t events) override;
     void write(const char *buffer, int count);
 
+    void handleHostGame(string mess);
     void setQuestions(string mess);
     void setPin();
     void startGame(string mess);

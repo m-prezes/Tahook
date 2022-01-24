@@ -45,26 +45,20 @@ void Client::handleEvent(uint32_t events)
 {
     if (events & EPOLLIN)
     {
-        char buffer[256];
-        ssize_t count = read(_fd, buffer, 256);
-        printf("%d: %.*s", _fd, (int)count, buffer);
+        char buffer[1];
+        ssize_t count = read(_fd, buffer, 1);
         if (count > 0)
         {
-
-            string mess(buffer);
-            mess = mess.substr(0, count);
-
-            if (!_connectedToGame && nick.empty())
+            if (buffer[0] != '\n')
             {
-                setNick(mess);
-            }
-            else if (!_connectedToGame)
-            {
-                joinGame(mess);
+                _inputBuffer += buffer[0];
             }
             else
             {
-                sendAnswer(mess);
+                string mess = _inputBuffer;
+                _inputBuffer = "";
+                handlePlayerGame(mess);
+                cout << _fd << ": " << mess << endl;
             }
         }
         else
@@ -76,9 +70,29 @@ void Client::handleEvent(uint32_t events)
     }
 }
 
+void Client::handlePlayerGame(string mess)
+{
+    if (!_connectedToGame && nick.empty())
+    {
+        setNick(mess);
+    }
+    else if (!_connectedToGame)
+    {
+        joinGame(mess);
+    }
+    else if (mess == "Game has ended!")
+    {
+        endGame();
+    }
+    else
+    {
+        sendAnswer(mess);
+    }
+}
+
 void Client::setNick(string nickName)
 {
-    nick = nickName.substr(0, nickName.length() - 1); // [TODO]: -1 bo nowa linia w terminalu
+    nick = nickName;
     string pinRequest("Enter pin:\n");
     write(pinRequest.c_str(), pinRequest.length());
 }
@@ -90,7 +104,7 @@ void Client::joinGame(string pin)
     {
         Host *h = *it;
         it++;
-        if (h->pin() == pin.substr(0, pin.length() - 1) && h->gameState() == 1) // [TODO]: -1 bo nowa linia w terminalu
+        if (h->pin() == pin && h->gameState() == 1)
         {
             h->players.insert(this);
             _host = h;
@@ -118,12 +132,12 @@ void Client::sendAnswer(string mess)
 
         try
         {
-            json answer = json::parse(mess.substr(0, mess.length() - 1)); //[TODO]: -1 bo nowa linia w terminalu
+            json answer = json::parse(mess);
             int currQue = _host->currentQuestion;
 
             if (answer["question"] == currQue)
             {
-                _host->currAnswers++;
+
                 string messageForHost("answers:{'currAnswers':" + to_string(_host->currAnswers) + "}\n");
                 writeToHost(messageForHost.c_str(), messageForHost.length());
 
@@ -131,6 +145,7 @@ void Client::sendAnswer(string mess)
                 {
                     points += 100;
                 }
+                _host->currAnswers++;
             }
         }
         catch (const exception &e)
@@ -141,9 +156,16 @@ void Client::sendAnswer(string mess)
     }
     else
     {
+
         string gameNotStarted("Question has not send yet!\n");
         write(gameNotStarted.c_str(), gameNotStarted.length());
     }
+}
+
+void Client::endGame()
+{
+    printf("removing %d\n", _fd);
+    delete this;
 }
 
 void Client::write(const char *buffer, int count)

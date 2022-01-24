@@ -133,6 +133,8 @@ public class Client {
                 } else if (str.substring(0, 8).equals("ranking:")) {
                     ranking = str.substring(8, str.length());
                     nextScene("/com/tahook/rankingScene.fxml");
+                } else if (str.equals("Game has ended!")) {
+                    gamestate++;
                 }
 
             }

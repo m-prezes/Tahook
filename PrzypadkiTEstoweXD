@@ -36,7 +36,7 @@ DODATKOWO:
 
 
 
-[{"question":"aaaa","anwser_a":"a","anwser_b":"b","anwser_c":"c","anwser_d":"d", "time":20000,"correct":"a"},{"question":"bbbb","anwser_a":"a","anwser_b":"b","anwser_c":"c","anwser_d":"d", "time":20000,"correct":"a"}]
+[{"question":"aaaa","anwser_a":"a","anwser_b":"b","anwser_c":"c","anwser_d":"d", "answer_time":20000,"correctAnswer":"a"},{"question":"bbbb","anwser_a":"a","anwser_b":"b","anwser_c":"c","anwser_d":"d", "answer_time":20000,"correctAnswer":"a"}]
 
 {"question":0,"answer":"a"}
 {"question":1,"answer":"a"}

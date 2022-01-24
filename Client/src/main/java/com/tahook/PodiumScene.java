@@ -1,7 +1,6 @@
 package com.tahook;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -17,12 +16,13 @@ public class PodiumScene {
     private Parent root;
     private Client client;
 
-    public PodiumScene() {client = Client.getInstance();}
-
+    public PodiumScene() {
+        client = Client.getInstance();
+    }
 
     public void switchToStartScene(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("startScene.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

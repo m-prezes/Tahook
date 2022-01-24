@@ -12,6 +12,7 @@ class Client : public Handler
     int _fd;
     int _epollFd;
     Host *_host;
+    string _inputBuffer;
 
 public:
     bool _connectedToGame;
@@ -27,9 +28,11 @@ public:
     void write(const char *buffer, int count);
     void writeToHost(const char *buffer, int count);
 
+    void handlePlayerGame(string mess);
     void joinGame(string pin);
     void setNick(string nickName);
     void sendAnswer(string mess);
+    void endGame();
 };
 
 extern std::unordered_set<Client *> clients;
