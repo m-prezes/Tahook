@@ -224,7 +224,7 @@ void Host::showRank()
 
 void Host::endGame(string mess)
 {
-    if (mess == "end")
+    if (mess == "send")
     {
         string endInfo("Game has ended!\n");
         write(endInfo.c_str(), endInfo.length());

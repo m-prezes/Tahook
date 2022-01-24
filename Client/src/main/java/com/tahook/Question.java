@@ -12,6 +12,7 @@ public class Question {
     private String answer_d;
     private String correctAnswer;
     private int answer_time;
+    private int number;
 
     public Question(String question, String answer_a, String answer_b, String answer_c, String answer_d,
             int answer_time, String correctAnswer) {
@@ -74,13 +75,17 @@ public class Question {
         this.answer_d = answer_d;
     }
 
-    public int getAnswer_time() {return answer_time;}
+    public int getAnswer_time() {
+        return answer_time;
+    }
 
     public void setAnswer_time(int anwser_time) {
         this.answer_time = anwser_time;
     }
 
-    public String getCorrectAnswer() {return correctAnswer;}
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
 
     public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
@@ -89,6 +94,10 @@ public class Question {
     public String getWholeQuestion() {
         return this.question + " " + this.answer_a + " " + this.answer_b + " " +
                 this.answer_c + " " + this.answer_d;
+    }
+
+    public void setNumber(int num) {
+        this.number = num;
     }
 
     public String getJSON() {
@@ -100,6 +109,7 @@ public class Question {
         response.put("answer_d", this.answer_d);
         response.put("correctAnswer", this.correctAnswer);
         response.put("answer_time", this.answer_time * 1000);
+        response.put("number", this.number);
         String jsonString = new JSONObject(response).toString();
 
         return jsonString;

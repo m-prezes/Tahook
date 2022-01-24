@@ -21,6 +21,7 @@ public class PodiumScene {
     }
 
     public void switchToStartScene(ActionEvent event) throws IOException {
+        client.reset();
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("startScene.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);

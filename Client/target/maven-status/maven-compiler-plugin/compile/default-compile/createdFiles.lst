@@ -1,9 +1,7 @@
-com/tahook/player/QuestionScene.class
 com/tahook/host/WaitingRoom.class
 com/tahook/Main.class
 com/tahook/StartScene.class
 com/tahook/PodiumScene.class
-com/tahook/host/QuestionScene.class
 module-info.class
 com/tahook/Question.class
 com/tahook/player/PinScene.class

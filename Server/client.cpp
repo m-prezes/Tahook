@@ -138,7 +138,7 @@ void Client::sendAnswer(string mess)
             if (answer["question"] == currQue)
             {
 
-                string messageForHost("answers:{'currAnswers':" + to_string(_host->currAnswers) + "}\n");
+                string messageForHost("answers:{'currAnswers':" + to_string(_host->currAnswers + 1) + "}\n");
                 writeToHost(messageForHost.c_str(), messageForHost.length());
 
                 if (answer["answer"].dump() == _host->questions[currQue]["correctAnswer"].dump())

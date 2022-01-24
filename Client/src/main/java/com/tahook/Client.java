@@ -110,49 +110,64 @@ public class Client {
 
     void handleMessage(String str) {
         if (isHost) {
-            if (str.equals("Need questions!")) {
-                nextScene("host/createGameScene.fxml");
-            } else if (str.substring(0, 4).equals("PIN:")) {
+            handleHostGame(str);
+        } else {
+            handlePlayerGame(str);
+        }
+    }
+
+    void handleHostGame(String str) {
+        if (str.equals("Need questions!")) {
+            nextScene("host/createGameScene.fxml");
+        } else if (str.substring(0, 4).equals("PIN:")) {
+            gamestate++;
+            pin = str.substring(4, str.length());
+            nextScene("host/waitingRoom.fxml");
+        } else if (gamestate == 1) {
+            if (str.equals("Start game")) {
                 gamestate++;
-                pin = str.substring(4, str.length());
+            } else {
+                players = str;
                 nextScene("host/waitingRoom.fxml");
-            } else if (gamestate == 1) {
-                if (str.equals("Start game")) {
-                    gamestate++;
-                } else {
-                    players = str;
-                    nextScene("host/waitingRoom.fxml");
-
-                }
-
-            } else if (gamestate == 2) {
-                if (str.substring(0, 9).equals("question:")) {
-                    question = str.substring(9, str.length());
-                    nextScene("host/questionScene.fxml");
-                } else if (str.substring(0, 8).equals("answers:")) {
-                    players = str.substring(8, str.length());
-                    nextScene("host/questionScene.fxml");
-                } else if (str.substring(0, 8).equals("ranking:")) {
-                    ranking = str.substring(8, str.length());
-                    nextScene("/com/tahook/rankingScene.fxml");
-                } else if (str.equals("Game has ended!")) {
-                    gamestate++;
-                }
 
             }
 
-        } else {
-            if (str.equals("Enter nick:")) {
-                nextScene("player/nickScene.fxml");
-            } else if (str.equals("Enter pin:")) {
-                nextScene("player/pinScene.fxml");
-            } else if (str.equals("Joined game")) {
-                gamestate++;
-                nextScene("player/waitingForHostScene.fxml");
-            } else if (gamestate == 1) {
-                System.out.println(str);
+        } else if (gamestate == 2) {
+            if (str.substring(0, 9).equals("question:")) {
                 question = str.substring(9, str.length());
-                nextScene("player/questionScene.fxml");
+                nextScene("questionScene.fxml");
+            } else if (str.substring(0, 8).equals("answers:")) {
+                players = str.substring(8, str.length());
+                nextScene("questionScene.fxml");
+            } else if (str.substring(0, 8).equals("ranking:")) {
+                ranking = str.substring(8, str.length());
+                nextScene("rankingScene.fxml");
+            } else if (str.equals("Game has ended!")) {
+                gamestate++;
+                nextScene("podiumScene.fxml");
+            }
+
+        }
+    }
+
+    void handlePlayerGame(String str) {
+        if (str.equals("Enter nick:")) {
+            nextScene("player/nickScene.fxml");
+        } else if (str.equals("Enter pin:")) {
+            nextScene("player/pinScene.fxml");
+        } else if (str.equals("Joined game")) {
+            gamestate++;
+            nextScene("player/waitingForHostScene.fxml");
+        } else if (gamestate == 1) {
+            if (str.substring(0, 9).equals("question:")) {
+                question = str.substring(9, str.length());
+                nextScene("questionScene.fxml");
+            } else if (str.substring(0, 8).equals("ranking:")) {
+                ranking = str.substring(8, str.length());
+                nextScene("rankingScene.fxml");
+            } else if (str.equals("Game has ended!")) {
+                gamestate++;
+                nextScene("podiumScene.fxml");
             }
         }
     }
@@ -199,5 +214,13 @@ public class Client {
             buffer.get(bytes);
         }
         return new String(bytes, charset);
+    }
+
+    void reset() {
+        try {
+            clientChanel.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

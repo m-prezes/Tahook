@@ -6,17 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/mateusz/Desktop/Tahook/Server/client.h
-handler.cpp
-/home/mateusz/Desktop/Tahook/Server/handler.cpp
-host.h
-/home/mateusz/Desktop/Tahook/Server/host.h
-
-/home/mateusz/Desktop/Tahook/Server/handler.cpp
-arpa/inet.h
--
-
-/home/mateusz/Desktop/Tahook/Server/host.cpp
+/home/mateusz/Desktop/Tahook/Server/client.cpp
 cstdlib
 -
 cstdio
@@ -47,16 +37,20 @@ string
 -
 string.h
 -
-thread
+exception
 -
-chrono
--
-ctime
--
+client.h
+/home/mateusz/Desktop/Tahook/Server/client.h
+
+/home/mateusz/Desktop/Tahook/Server/client.h
+handler.cpp
+/home/mateusz/Desktop/Tahook/Server/handler.cpp
 host.h
 /home/mateusz/Desktop/Tahook/Server/host.h
-nlohmann/json.hpp
-/home/mateusz/Desktop/Tahook/Server/nlohmann/json.hpp
+
+/home/mateusz/Desktop/Tahook/Server/handler.cpp
+arpa/inet.h
+-
 
 /home/mateusz/Desktop/Tahook/Server/host.h
 handler.cpp

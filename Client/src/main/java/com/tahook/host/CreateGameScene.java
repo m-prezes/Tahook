@@ -164,9 +164,11 @@ public class CreateGameScene {
 
     public String prepareMessage(ObservableList<Question> questionList) {
         String message = "[";
-
+        int num = 0;
         for (Question question : questionList) {
+            question.setNumber(num);
             message += question.getJSON() + ',';
+            num++;
         }
         if (message != null && message.length() > 0 && message.charAt(message.length() - 1) == ',') {
             message = message.substring(0, message.length() - 1);
