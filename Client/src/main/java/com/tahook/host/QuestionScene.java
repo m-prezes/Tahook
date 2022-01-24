@@ -36,8 +36,8 @@ public class QuestionScene {
         fxAnswer_b.setText(receivedMessage.get("answer_b").toString());
         fxAnswer_c.setText(receivedMessage.get("answer_c").toString());
         fxAnswer_d.setText(receivedMessage.get("answer_d").toString());
-        fx_nAnswers.setText(receivedMessage.get("answers_count").toString());
-        fxTime_left.setText(Integer.toString(Integer.parseInt(receivedMessage.get("answer_time").toString()) / 100));
+        // fx_nAnswers.setText(receivedMessage.get("answers_count").toString());
+        fxTime_left.setText(Integer.toString(Integer.parseInt(receivedMessage.get("answer_time").toString()) / 1000));
         fx_question.setText(receivedMessage.get("question").toString());
         PauseTransition wait = new PauseTransition(Duration.seconds(1));
         wait.setOnFinished((e) -> {
@@ -49,9 +49,7 @@ public class QuestionScene {
 
     public QuestionScene() throws ParseException {
         client = Client.getInstance();
-        // przykladowa wiadomość TODO
-        receivedMessage = (JSONObject) parser.parse(
-                "{\"question\":\"test\",\"answer_a\":\"1\",\"answers_count\":12,\"answer_b\":\"2\",\"answer_time\":10000,\"answer_c\":\"3\",\"answer_d\":\"4\"}");
+        receivedMessage = (JSONObject) parser.parse(client.getQuestion());
     }
 
     // Kiedy przyjdzie odpowiedz z serwera wykonaj:

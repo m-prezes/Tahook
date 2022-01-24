@@ -28,7 +28,7 @@ Client::Client(int fd, int epollFd) : _fd(fd), _epollFd(epollFd), _connectedToGa
 {
     epoll_event ee{EPOLLIN | EPOLLRDHUP, {.ptr = this}};
     epoll_ctl(_epollFd, EPOLL_CTL_ADD, _fd, &ee);
-    string nickRequest("Enter nick:");
+    string nickRequest("Enter nick:\n");
     write(nickRequest.c_str(), nickRequest.length());
 }
 
@@ -79,7 +79,7 @@ void Client::handleEvent(uint32_t events)
 void Client::setNick(string nickName)
 {
     nick = nickName.substr(0, nickName.length() - 1); // [TODO]: -1 bo nowa linia w terminalu
-    string pinRequest("Enter pin:");
+    string pinRequest("Enter pin:\n");
     write(pinRequest.c_str(), pinRequest.length());
 }
 
@@ -100,12 +100,12 @@ void Client::joinGame(string pin)
     }
     if (!_connectedToGame)
     {
-        string pinIsNotValid("Invalid pin!");
+        string pinIsNotValid("Invalid pin!\n");
         write(pinIsNotValid.c_str(), pinIsNotValid.length());
     }
     else
     {
-        string pinIsValid("Joined game");
+        string pinIsValid("Joined game\n");
         write(pinIsValid.c_str(), pinIsValid.length());
         _host->getAllPlayersNicks();
     }
@@ -113,7 +113,7 @@ void Client::joinGame(string pin)
 
 void Client::sendAnswer(string mess)
 {
-    if (_host->gameState() == 3 && _host->questionActive())
+    if (_host->gameState() == 2 && _host->questionActive())
     {
 
         try
@@ -124,11 +124,10 @@ void Client::sendAnswer(string mess)
             if (answer["question"] == currQue)
             {
                 _host->currAnswers++;
-                string messageForHost("{'currAnswers':" + to_string(_host->currAnswers) + "}");
-                cout << messageForHost << endl;
+                string messageForHost("answers:{'currAnswers':" + to_string(_host->currAnswers) + "}\n");
                 writeToHost(messageForHost.c_str(), messageForHost.length());
 
-                if (answer["answer"].dump() == _host->questions[currQue]["correct"].dump())
+                if (answer["answer"].dump() == _host->questions[currQue]["correctAnswer"].dump())
                 {
                     points += 100;
                 }
@@ -136,13 +135,13 @@ void Client::sendAnswer(string mess)
         }
         catch (const exception &e)
         {
-            string answerIsInvalid("Invalid answer format!");
+            string answerIsInvalid("Invalid answer format!\n");
             write(answerIsInvalid.c_str(), answerIsInvalid.length());
         }
     }
     else
     {
-        string gameNotStarted("Question has not send yet!");
+        string gameNotStarted("Question has not send yet!\n");
         write(gameNotStarted.c_str(), gameNotStarted.length());
     }
 }

@@ -6,22 +6,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 
 public class CreateGameScene {
     private Client client;
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+
     private ObservableList<Question> questionList;
     private String correctAns = "a";
 
@@ -151,16 +143,10 @@ public class CreateGameScene {
     }
 
     public void switchToWaitingRoom(ActionEvent event) throws IOException {
-        // ZAMIST PRINTLN WYSLIJ DO SERWERA
-        System.out.println(prepareMessage(questionList));
 
+        System.out.println(prepareMessage(questionList));
         client.write(prepareMessage(questionList));
 
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("waitingRoom.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 
     public void getCorrectAnswer(ActionEvent event) {

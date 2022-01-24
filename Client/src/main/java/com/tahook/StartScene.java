@@ -14,7 +14,7 @@ public class StartScene {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         Client client = Client.getInstance();
-        client.joinGame(stage, 1111);
+        client.joinGame(stage, 1111, true);
 
         Thread thread = new Thread() {
             public void run() {
@@ -34,7 +34,7 @@ public class StartScene {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         Client client = Client.getInstance();
-        client.joinGame(stage, 2222);
+        client.joinGame(stage, 2222, false);
 
         Thread thread = new Thread() {
             public void run() {

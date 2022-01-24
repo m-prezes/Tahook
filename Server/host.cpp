@@ -34,7 +34,7 @@ Host::Host(int fd, int epollFd) : _epollFd(epollFd), _gameState(0), _questionAct
 {
     epoll_event ee{EPOLLIN | EPOLLRDHUP, {.ptr = this}};
     epoll_ctl(_epollFd, EPOLL_CTL_ADD, _fd, &ee);
-    string questionsRequest("Need questions!");
+    string questionsRequest("Need questions!\n");
     write(questionsRequest.c_str(), questionsRequest.length());
 }
 
@@ -101,7 +101,7 @@ void Host::setQuestions(string mess)
     }
     catch (const exception &e)
     {
-        string questionIsInvalid("Cannot set question!");
+        string questionIsInvalid("Cannot set question!\n");
         write(questionIsInvalid.c_str(), questionIsInvalid.length());
     }
 }
@@ -110,7 +110,7 @@ void Host::setPin()
 {
     _pin = to_string(GAMEPIN);
     GAMEPIN++;
-    string pinResponse("PIN:" + _pin);
+    string pinResponse("PIN:" + _pin + "\n");
     write(pinResponse.c_str(), strlen(pinResponse.c_str()));
 }
 
@@ -120,18 +120,20 @@ void Host::startGame(string mess)
     {
         if (players.size() > 1)
         {
+            string gameStartedMessage("Start game\n");
+            write(gameStartedMessage.c_str(), gameStartedMessage.length());
             sendQuestion("send "); //[TODO]: usunac spacje
             _gameState++;
         }
         else
         {
-            string toLowPlayers("Za mało graczy!");
+            string toLowPlayers("Za mało graczy!\n");
             write(toLowPlayers.c_str(), toLowPlayers.length());
         }
     }
     else
     {
-        string startRequest("Need start request!");
+        string startRequest("Need start request!\n");
         write(startRequest.c_str(), startRequest.length());
     }
 }
@@ -144,43 +146,24 @@ void Host::sendQuestion(string mess)
         {
             currAnswers = 0;
             auto &el = questions[currentQuestion];
+            string messageQuestion = "question:" + el.dump() + "\n";
             sendToAllPlayers(el.dump().c_str(), el.dump().length());
-            write(el.dump().c_str(), el.dump().length());
+            write(messageQuestion.c_str(), messageQuestion.length());
             _questionActive = true;
             timer();
         }
         else
         {
-            string questionSendRequest("Need question send request!");
+            string questionSendRequest("Need question send request!\n");
             write(questionSendRequest.c_str(), questionSendRequest.length());
         }
     }
     else
     {
-        string questionActive("There is active question!");
+        string questionActive("There is active question!\n");
         write(questionActive.c_str(), questionActive.length());
     }
 }
-
-// void Host::timer()
-// {
-//     thread t([=]()
-//              {
-//                  std::this_thread::sleep_for(std::chrono::milliseconds(questions[currentQuestion]["time"]));
-//                  if (currentQuestion == questions.size() - 1)
-//                  {
-//                      _gameState++;
-//                  }
-//                  else
-//                  {
-//                      currentQuestion++;
-//                  }
-//                  _questionActive = false;
-//                  showRank();
-//                  return;
-//              });
-//     t.detach();
-// }
 
 void Host::timer()
 {
@@ -191,7 +174,7 @@ void Host::timer()
                  time(&time_1);
                  time(&time_2);
 
-                 while (_questionActive && ((time_2 - time_1) * 1000) < (questions[currentQuestion]["time"]))
+                 while (_questionActive && ((time_2 - time_1) * 1000) < (questions[currentQuestion]["answer_time"]))
                  {
                      time(&time_2);
                      if (float(currAnswers) / float(players.size()) >= 2.0 / 3.0)
@@ -217,9 +200,6 @@ void Host::timer()
 
 void Host::showRank()
 {
-    sendToAllPlayers(string("timeout").c_str(), 7);
-    write(string("timeout").c_str(), 7);
-
     json rank = json({});
     auto it = players.begin();
     while (it != players.end())
@@ -228,15 +208,16 @@ void Host::showRank()
         it++;
         rank[player->nick] = player->points;
     }
-    write(rank.dump().c_str(), rank.dump().length());
-    sendToAllPlayers(rank.dump().c_str(), rank.dump().length());
+    string rankingMessage = "ranking:" + rank.dump() + "\n";
+    write(rankingMessage.c_str(), rankingMessage.length());
+    sendToAllPlayers(rankingMessage.c_str(), rankingMessage.length());
 }
 
 void Host::endGame(string mess)
 {
     if (mess.substr(0, mess.length() - 1) == "end") //[TODO]: -1 bo nowa lina w terminalu
     {
-        string endInfo("Game has ended!");
+        string endInfo("Game has ended!\n");
         write(endInfo.c_str(), endInfo.length());
 
         auto it = players.begin();
@@ -251,7 +232,7 @@ void Host::endGame(string mess)
     }
     else
     {
-        string endRequest("Need end request!");
+        string endRequest("Need end request!\n");
         write(endRequest.c_str(), endRequest.length());
     }
 }
@@ -280,7 +261,8 @@ void Host::getAllPlayersNicks()
         i++;
     }
     cout << playersNicks.dump() << endl;
-    write(playersNicks.dump().c_str(), playersNicks.dump().length());
+    string playersList(playersNicks.dump() + "\n");
+    write(playersList.c_str(), playersList.length());
 }
 
 void Host::write(const char *buffer, int count)
