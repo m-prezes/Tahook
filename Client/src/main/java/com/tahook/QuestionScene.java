@@ -25,6 +25,7 @@ public class QuestionScene {
     private Client client;
     JSONParser parser = new JSONParser();
     private JSONObject receivedMessage;
+    private JSONObject nAnswers;
 
     @FXML
     private Label fx_nAnswers, fxTime_left, fxAnswer_a, fxAnswer_b, fxAnswer_c, fxAnswer_d, fx_question;
@@ -45,6 +46,19 @@ public class QuestionScene {
             wait.playFromStart();
         });
         wait.play();
+
+        PauseTransition updatePlayers = new PauseTransition(Duration.seconds(0.1));
+        updatePlayers.setOnFinished((e) -> {
+            try {
+                nAnswers = (JSONObject) parser.parse(client.getCurrentAnswers());
+            } catch (ParseException e1) {
+                e1.printStackTrace();
+            }
+            fx_nAnswers.setText(nAnswers.get("currAnswers").toString());
+            updatePlayers.playFromStart();
+        });
+        updatePlayers.play();
+
     }
 
     public QuestionScene() throws ParseException {

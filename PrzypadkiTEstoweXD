@@ -68,8 +68,17 @@ PRZEBIEG GRY:
 
 
 TODO:
-	- gracz tylko jedna odpowiedz na runde
-	- host zaznacza poprawne odpowiedzi i czas
+	- id onclick w fxml żeby zwracać zawsze odpowiedz
+	- wyśwuetlanie graczy w poczekalni
+	- dopasować rozmieszczenie pytania
+	- segmentation fault czasami
+	- info o błedach
+	- info o rozłączeniu z hostem
+	- powrót info o poprawnej lub nie odpowiedzi
+	- java,nio przy end client
+	
+	- co z write?
+	
 
 
 

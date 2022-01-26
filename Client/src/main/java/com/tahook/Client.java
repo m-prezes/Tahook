@@ -68,7 +68,7 @@ public class Client {
         gamestate = 0;
         isHost = host;
         players = "{}";
-        currentAnswers = "{}";
+        currentAnswers = "{\"currAnswers\":0}";
         inputBuffer = "";
     }
 
@@ -135,10 +135,11 @@ public class Client {
         } else if (gamestate == 2) {
             if (str.substring(0, 9).equals("question:")) {
                 question = str.substring(9, str.length());
+                currentAnswers = "{\"currAnswers\":0}";
                 nextScene("questionScene.fxml");
             } else if (str.substring(0, 8).equals("answers:")) {
-                players = str.substring(8, str.length());
-                nextScene("questionScene.fxml");
+                currentAnswers = str.substring(8, str.length());
+                // nextScene("questionScene.fxml");
             } else if (str.substring(0, 8).equals("ranking:")) {
                 ranking = str.substring(8, str.length());
                 nextScene("rankingScene.fxml");
