@@ -96,7 +96,6 @@ public class Client {
                         } else {
                             String str = inputBuffer;
                             inputBuffer = "";
-                            System.out.println(str);
 
                             handleMessage(str);
 
@@ -128,8 +127,8 @@ public class Client {
         } else if (gamestate == 1) {
             if (str.equals("Start game")) {
                 gamestate++;
-            } else {
-                players = str;
+            } else if (str.substring(0, 8).equals("players:")) {
+                players = str.substring(8, str.length());
                 nextScene("host/waitingRoom.fxml");
 
             }
@@ -148,6 +147,8 @@ public class Client {
             } else if (str.equals("Game has ended!")) {
                 gamestate++;
                 nextScene("podiumScene.fxml");
+            } else {
+                System.out.println(str);
             }
 
         }
