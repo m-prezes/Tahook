@@ -11,6 +11,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import java.util.Objects;
 
+import org.json.simple.JSONArray;
+
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,6 +32,7 @@ public class Client {
     int gamestate;
     String currentAnswers;
     String ranking;
+    JSONArray sortedRanking;
 
     private Client() {
     }

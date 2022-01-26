@@ -6,57 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/home/marcin/Desktop/ProjektSK/Tahook/Server/client.cpp
-cstdlib
--
-cstdio
--
-unistd.h
--
-sys/socket.h
--
-netinet/in.h
--
-arpa/inet.h
--
-errno.h
--
-error.h
--
-netdb.h
--
-sys/epoll.h
--
-unordered_set
--
-signal.h
--
-iostream
--
-string
--
-string.h
--
-exception
--
-client.h
-/home/marcin/Desktop/ProjektSK/Tahook/Server/client.h
-
-/home/marcin/Desktop/ProjektSK/Tahook/Server/client.h
+/home/mateusz/Desktop/Tahook/Server/client.h
 handler.cpp
-/home/marcin/Desktop/ProjektSK/Tahook/Server/handler.cpp
+/home/mateusz/Desktop/Tahook/Server/handler.cpp
 host.h
-/home/marcin/Desktop/ProjektSK/Tahook/Server/host.h
+/home/mateusz/Desktop/Tahook/Server/host.h
 
-/home/marcin/Desktop/ProjektSK/Tahook/Server/handler.cpp
+/home/mateusz/Desktop/Tahook/Server/handler.cpp
 arpa/inet.h
 -
 
-<<<<<<< HEAD
-/home/marcin/Desktop/ProjektSK/Tahook/Server/host.cpp
-=======
 /home/mateusz/Desktop/Tahook/Server/host.cpp
->>>>>>> ff39336db4da5a0fcee6bdff2c932eb62a0d5a46
 cstdlib
 -
 cstdio
@@ -94,29 +54,21 @@ chrono
 ctime
 -
 host.h
-<<<<<<< HEAD
-/home/marcin/Desktop/ProjektSK/Tahook/Server/host.h
-nlohmann/json.hpp
-/home/marcin/Desktop/ProjektSK/Tahook/Server/nlohmann/json.hpp
-
-/home/marcin/Desktop/ProjektSK/Tahook/Server/host.h
-=======
 /home/mateusz/Desktop/Tahook/Server/host.h
 nlohmann/json.hpp
 /home/mateusz/Desktop/Tahook/Server/nlohmann/json.hpp
 
 /home/mateusz/Desktop/Tahook/Server/host.h
->>>>>>> ff39336db4da5a0fcee6bdff2c932eb62a0d5a46
 handler.cpp
-/home/marcin/Desktop/ProjektSK/Tahook/Server/handler.cpp
+/home/mateusz/Desktop/Tahook/Server/handler.cpp
 client.h
-/home/marcin/Desktop/ProjektSK/Tahook/Server/client.h
+/home/mateusz/Desktop/Tahook/Server/client.h
 nlohmann/json.hpp
-/home/marcin/Desktop/ProjektSK/Tahook/Server/nlohmann/json.hpp
+/home/mateusz/Desktop/Tahook/Server/nlohmann/json.hpp
 atomic
 -
 
-/home/marcin/Desktop/ProjektSK/Tahook/Server/nlohmann/json.hpp
+/home/mateusz/Desktop/Tahook/Server/nlohmann/json.hpp
 algorithm
 -
 cstddef
@@ -477,50 +429,4 @@ vector
 -
 string_view
 -
-
-<<<<<<< HEAD
-/home/marcin/Desktop/ProjektSK/Tahook/Server/server.cpp
-=======
-/home/mateusz/Desktop/Tahook/Server/server.cpp
->>>>>>> ff39336db4da5a0fcee6bdff2c932eb62a0d5a46
-cstdlib
--
-cstdio
--
-unistd.h
--
-sys/socket.h
--
-netinet/in.h
--
-arpa/inet.h
--
-errno.h
--
-error.h
--
-netdb.h
--
-sys/epoll.h
--
-unordered_set
--
-signal.h
--
-iostream
--
-string
--
-string.h
--
-client.h
-<<<<<<< HEAD
-/home/marcin/Desktop/ProjektSK/Tahook/Server/client.h
-host.h
-/home/marcin/Desktop/ProjektSK/Tahook/Server/host.h
-=======
-/home/mateusz/Desktop/Tahook/Server/client.h
-host.h
-/home/mateusz/Desktop/Tahook/Server/host.h
->>>>>>> ff39336db4da5a0fcee6bdff2c932eb62a0d5a46
 

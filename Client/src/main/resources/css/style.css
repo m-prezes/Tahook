@@ -98,3 +98,14 @@
     -fx-min-width: 180px;
     -fx-max-width: 180px;
 }
+
+.player-label-ranking{
+    -fx-background-color: #f4f4f4;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-font-size:15px;
+    -fx-padding:10px 30px;
+    -fx-pref-width: 180px;
+    -fx-min-width: 240px;
+    -fx-max-width: 240px;
+}

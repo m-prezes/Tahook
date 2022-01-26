@@ -27,7 +27,7 @@
                   <Button layoutX="359.0" layoutY="149.0" mnemonicParsing="false" onAction="#wyczyscPola" styleClass="join-button" text="Wyczyść" textFill="WHITE" />
                   <Button layoutX="452.0" layoutY="149.0" mnemonicParsing="false" onAction="#usunPytanie" styleClass="join-button" text="Usuń" textFill="WHITE" />
                   <TextField fx:id="tfTime" layoutX="175.0" layoutY="149.0" prefHeight="25.0" prefWidth="43.0" text="60" />
-                  <Text layoutX="50.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Czas na odpowiedz [s]" />
+                  <Text layoutX="14.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Czas na odpowiedz [s]" />
                   <RadioButton fx:id="tf_correct_a" layoutX="260.0" layoutY="67.0" mnemonicParsing="false" onAction="#getCorrectAnswer" selected="true">
                      <toggleGroup>
                         <ToggleGroup fx:id="correctAns" />

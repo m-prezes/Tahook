@@ -209,13 +209,18 @@ void Host::timer()
 
 void Host::showRank()
 {
-    json rank = json({});
+
+    json rank = json::array();
+
     auto it = players.begin();
     while (it != players.end())
     {
+        json playerPoints = json({});
         Client *player = *it;
         it++;
-        rank[player->nick] = player->points;
+        playerPoints["userName"] = player->nick;
+        playerPoints["points"] = player->points;
+        rank.push_back(playerPoints);
     }
     string rankingMessage = "ranking:" + rank.dump() + "\n";
     write(rankingMessage.c_str(), rankingMessage.length());

@@ -4,12 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/marcin/Desktop/ProjektSK/Tahook/Server/client.cpp" "/home/marcin/Desktop/ProjektSK/Tahook/Server/build/CMakeFiles/TahookServer.dir/client.cpp.o"
-  "/home/marcin/Desktop/ProjektSK/Tahook/Server/handler.cpp" "/home/marcin/Desktop/ProjektSK/Tahook/Server/build/CMakeFiles/TahookServer.dir/handler.cpp.o"
-  "/home/marcin/Desktop/ProjektSK/Tahook/Server/host.cpp" "/home/marcin/Desktop/ProjektSK/Tahook/Server/build/CMakeFiles/TahookServer.dir/host.cpp.o"
-  "/home/marcin/Desktop/ProjektSK/Tahook/Server/server.cpp" "/home/marcin/Desktop/ProjektSK/Tahook/Server/build/CMakeFiles/TahookServer.dir/server.cpp.o"
+  "/home/mateusz/Desktop/Tahook/Server/client.cpp" "/home/mateusz/Desktop/Tahook/Server/build/CMakeFiles/TahookServer.dir/client.cpp.o"
+  "/home/mateusz/Desktop/Tahook/Server/handler.cpp" "/home/mateusz/Desktop/Tahook/Server/build/CMakeFiles/TahookServer.dir/handler.cpp.o"
+  "/home/mateusz/Desktop/Tahook/Server/host.cpp" "/home/mateusz/Desktop/Tahook/Server/build/CMakeFiles/TahookServer.dir/host.cpp.o"
+  "/home/mateusz/Desktop/Tahook/Server/server.cpp" "/home/mateusz/Desktop/Tahook/Server/build/CMakeFiles/TahookServer.dir/server.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "Clang")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
