@@ -138,7 +138,7 @@ void Client::sendAnswer(string mess)
             if (answer["question"] == currQue)
             {
 
-                string messageForHost("answers:{'currAnswers':" + to_string(_host->currAnswers + 1) + "}\n");
+                string messageForHost("answers:{\"currAnswers\":" + to_string(_host->currAnswers + 1) + "}\n");
                 writeToHost(messageForHost.c_str(), messageForHost.length());
 
                 if (answer["answer"].dump() == _host->questions[currQue]["correctAnswer"].dump())
@@ -180,11 +180,21 @@ void Client::writeToHost(const char *buffer, int count)
         remove();
 }
 
+void Client::removeHost()
+{
+    _host = nullptr;
+}
+
 void Client::remove()
 {
     printf("removing %d\n", _fd);
-    _host->players.erase(this);
-    _host = nullptr;
+    if (_host != nullptr)
+    {
+
+        _host->players.erase(this);
+        _host->getAllPlayersNicks();
+        _host = nullptr;
+    }
     delete this;
 }
 

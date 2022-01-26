@@ -68,7 +68,7 @@ public class Client {
         gamestate = 0;
         isHost = host;
         players = "{}";
-        currentAnswers = "{}";
+        currentAnswers = "{\"currAnswers\":0}";
         inputBuffer = "";
     }
 
@@ -96,13 +96,16 @@ public class Client {
                         } else {
                             String str = inputBuffer;
                             inputBuffer = "";
-                            System.out.println(str);
 
                             handleMessage(str);
 
                         }
+                    } else if (byteRead == -1) {
+                        channel.close();
                     }
 
+                } else if (key.isValid()) {
+                    System.out.println("ERROR with connection");
                 }
             }
         }
@@ -126,8 +129,8 @@ public class Client {
         } else if (gamestate == 1) {
             if (str.equals("Start game")) {
                 gamestate++;
-            } else {
-                players = str;
+            } else if (str.substring(0, 8).equals("players:")) {
+                players = str.substring(8, str.length());
                 nextScene("host/waitingRoom.fxml");
 
             }
@@ -135,16 +138,19 @@ public class Client {
         } else if (gamestate == 2) {
             if (str.substring(0, 9).equals("question:")) {
                 question = str.substring(9, str.length());
+                currentAnswers = "{\"currAnswers\":0}";
                 nextScene("questionScene.fxml");
             } else if (str.substring(0, 8).equals("answers:")) {
-                players = str.substring(8, str.length());
-                nextScene("questionScene.fxml");
+                currentAnswers = str.substring(8, str.length());
+                // nextScene("questionScene.fxml");
             } else if (str.substring(0, 8).equals("ranking:")) {
                 ranking = str.substring(8, str.length());
                 nextScene("rankingScene.fxml");
             } else if (str.equals("Game has ended!")) {
                 gamestate++;
                 nextScene("podiumScene.fxml");
+            } else {
+                System.out.println(str);
             }
 
         }
@@ -218,7 +224,11 @@ public class Client {
 
     void reset() {
         try {
-            clientChanel.close();
+            if (clientChanel.isOpen()) {
+                clientChanel.close();
+                selector.close();
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

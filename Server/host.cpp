@@ -263,7 +263,7 @@ void Host::getAllPlayersNicks()
         i++;
     }
     cout << playersNicks.dump() << endl;
-    string playersList(playersNicks.dump() + "\n");
+    string playersList("players:" + playersNicks.dump() + "\n");
     write(playersList.c_str(), playersList.length());
 }
 
@@ -276,6 +276,13 @@ void Host::write(const char *buffer, int count)
 void Host::remove()
 {
     printf("removing %d\n", _fd);
+    auto it = players.begin();
+    while (it != players.end())
+    {
+        Client *player = *it;
+        it++;
+        player->removeHost();
+    }
     hosts.erase(this);
     delete this;
 }

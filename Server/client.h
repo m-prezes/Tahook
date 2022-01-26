@@ -33,6 +33,7 @@ public:
     void setNick(string nickName);
     void sendAnswer(string mess);
     void endGame();
+    void removeHost();
 };
 
 extern std::unordered_set<Client *> clients;
