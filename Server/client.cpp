@@ -185,7 +185,9 @@ void Client::remove()
     printf("removing %d\n", _fd);
     if (_host != nullptr)
     {
+
         _host->players.erase(this);
+        _host->getAllPlayersNicks();
         _host = nullptr;
     }
     delete this;

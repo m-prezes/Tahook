@@ -263,7 +263,7 @@ void Host::getAllPlayersNicks()
         i++;
     }
     cout << playersNicks.dump() << endl;
-    string playersList(playersNicks.dump() + "\n");
+    string playersList("players:" + playersNicks.dump() + "\n");
     write(playersList.c_str(), playersList.length());
 }
 
