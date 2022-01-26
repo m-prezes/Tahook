@@ -26,7 +26,7 @@ unordered_set<Client *> clients;
 
 Client::Client(int fd, int epollFd) : _fd(fd), _epollFd(epollFd), _connectedToGame(false)
 {
-    epoll_event ee{EPOLLIN | EPOLLRDHUP, {.ptr = this}};
+    epoll_event ee{EPOLLIN | EPOLLRDHUP, {this}};
     epoll_ctl(_epollFd, EPOLL_CTL_ADD, _fd, &ee);
     string nickRequest("Enter nick:\n");
     write(nickRequest.c_str(), nickRequest.length());

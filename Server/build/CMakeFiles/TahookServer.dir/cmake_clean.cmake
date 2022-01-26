@@ -3,8 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/TahookServer.dir/handler.cpp.o"
   "CMakeFiles/TahookServer.dir/host.cpp.o"
   "CMakeFiles/TahookServer.dir/server.cpp.o"
-  "TahookServer"
   "TahookServer.pdb"
+  "TahookServer"
 )
 
 # Per-language clean rules from dependency scanning.

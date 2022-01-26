@@ -32,7 +32,7 @@ std::unordered_set<Host *> hosts;
 
 Host::Host(int fd, int epollFd) : _epollFd(epollFd), _gameState(0), _questionActive(false), _fd(fd)
 {
-    epoll_event ee{EPOLLIN | EPOLLRDHUP, {.ptr = this}};
+    epoll_event ee{EPOLLIN | EPOLLRDHUP, {this}};
     epoll_ctl(_epollFd, EPOLL_CTL_ADD, _fd, &ee);
     string questionsRequest("Need questions!\n");
     write(questionsRequest.c_str(), questionsRequest.length());
