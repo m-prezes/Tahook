@@ -183,8 +183,11 @@ void Client::writeToHost(const char *buffer, int count)
 void Client::remove()
 {
     printf("removing %d\n", _fd);
-    _host->players.erase(this);
-    _host = nullptr;
+    if (_host != nullptr)
+    {
+        _host->players.erase(this);
+        _host = nullptr;
+    }
     delete this;
 }
 

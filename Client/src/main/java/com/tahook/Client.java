@@ -101,6 +101,8 @@ public class Client {
                             handleMessage(str);
 
                         }
+                    } else if (byteRead == -1) {
+                        channel.close();
                     }
 
                 }
@@ -219,7 +221,11 @@ public class Client {
 
     void reset() {
         try {
-            clientChanel.close();
+            if (clientChanel.isOpen()) {
+                clientChanel.close();
+                selector.close();
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
