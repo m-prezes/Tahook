@@ -75,7 +75,7 @@ TODO:
 	- info o rozłączeniu z hostem
 	- powrót info o poprawnej lub nie odpowiedzi
 	
-	- java,nio przy end client
+	- java.nio error przy end client
 	
 	- co z write?
 	

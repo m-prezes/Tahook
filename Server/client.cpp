@@ -180,6 +180,11 @@ void Client::writeToHost(const char *buffer, int count)
         remove();
 }
 
+void Client::removeHost()
+{
+    _host = nullptr;
+}
+
 void Client::remove()
 {
     printf("removing %d\n", _fd);

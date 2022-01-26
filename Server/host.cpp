@@ -276,6 +276,13 @@ void Host::write(const char *buffer, int count)
 void Host::remove()
 {
     printf("removing %d\n", _fd);
+    auto it = players.begin();
+    while (it != players.end())
+    {
+        Client *player = *it;
+        it++;
+        player->removeHost();
+    }
     hosts.erase(this);
     delete this;
 }

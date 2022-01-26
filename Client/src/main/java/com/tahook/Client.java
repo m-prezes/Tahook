@@ -104,6 +104,8 @@ public class Client {
                         channel.close();
                     }
 
+                } else if (key.isValid()) {
+                    System.out.println("ERROR with connection");
                 }
             }
         }
