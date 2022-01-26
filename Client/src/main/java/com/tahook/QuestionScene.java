@@ -92,7 +92,7 @@ public class QuestionScene {
                     answer="d";
                     break;    
             }
-            System.out.println(answer); // za duzo id i znajduje
+            // System.out.println(answer); // za duzo id i znajduje
                                                                                             // różne
             String message = "{\"question\":" + receivedMessage.get("number") + ", \"answer\":\"" + answer
                     + "\"}";
