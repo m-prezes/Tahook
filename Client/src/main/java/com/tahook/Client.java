@@ -33,6 +33,7 @@ public class Client {
     String currentAnswers;
     String ranking;
     JSONArray sortedRanking;
+    Boolean isAnswerCorrect;
 
     private Client() {
     }
@@ -61,6 +62,10 @@ public class Client {
         return ranking;
     }
 
+    public Boolean getIsAnswerCorrect() {
+        return isAnswerCorrect;
+    }
+
     public void joinGame(Stage s, int pin, boolean host) throws IOException {
         stage = s;
         selector = Selector.open();
@@ -73,6 +78,7 @@ public class Client {
         players = "{}";
         currentAnswers = "{\"currAnswers\":0}";
         inputBuffer = "";
+        isAnswerCorrect = false;
     }
 
     public void work() throws IOException {
@@ -169,14 +175,19 @@ public class Client {
             nextScene("player/waitingForHostScene.fxml");
         } else if (gamestate == 1) {
             if (str.substring(0, 9).equals("question:")) {
+                isAnswerCorrect = false;
                 question = str.substring(9, str.length());
                 nextScene("questionScene.fxml");
             } else if (str.substring(0, 8).equals("ranking:")) {
                 ranking = str.substring(8, str.length());
                 nextScene("rankingScene.fxml");
+
             } else if (str.equals("Game has ended!")) {
                 gamestate++;
                 nextScene("podiumScene.fxml");
+            } else if (str.substring(0, 16).equals("isAnswerCorrect:")) {
+                System.out.print(str);
+                isAnswerCorrect = Boolean.valueOf(str.substring(16, str.length()));
             }
         }
     }

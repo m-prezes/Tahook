@@ -144,6 +144,8 @@ void Client::sendAnswer(string mess)
                 if (answer["answer"].dump() == _host->questions[currQue]["correctAnswer"].dump())
                 {
                     points += 100;
+                    string isAnswerCorrect("isAnswerCorrect:true\n");
+                    write(isAnswerCorrect.c_str(), isAnswerCorrect.length());
                 }
                 _host->currAnswers++;
             }

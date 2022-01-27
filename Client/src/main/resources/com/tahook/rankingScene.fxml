@@ -16,12 +16,12 @@
             <DropShadow color="#00000066" />
          </effect>
          <children>
-            <Pane layoutX="75.0" layoutY="40.0" prefHeight="80.0" prefWidth="200.0" styleClass="result-box">
+            <Pane fx:id="resultPane" layoutX="75.0" layoutY="40.0" prefHeight="80.0" prefWidth="200.0" styleClass="result-box">
                <effect>
                   <DropShadow color="#00000065" />
                </effect>
                <children>
-                  <Label layoutX="43.0" layoutY="18.0" text="BRAWO!" textFill="WHITE">
+                  <Label fx:id="resultLabel" alignment="CENTER" layoutX="12.0" layoutY="22.0" prefHeight="36.0" prefWidth="177.0" textFill="WHITE">
                      <font>
                         <Font size="30.0" />
                      </font>

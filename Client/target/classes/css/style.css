@@ -35,7 +35,6 @@
 
 
 .result-box{
-    -fx-background-color: #00a205;
     -fx-background-radius: 10px;
     -fx-border-radius: 10px;
 }
@@ -100,7 +99,7 @@
 }
 
 .player-label-ranking{
-    -fx-background-color: #f4f4f4;
+    -fx-background-color: #712ddc;
     -fx-background-radius: 10px;
     -fx-border-radius: 10px;
     -fx-font-size:15px;
@@ -108,4 +107,17 @@
     -fx-pref-width: 180px;
     -fx-min-width: 240px;
     -fx-max-width: 240px;
+    -fx-text-fill: white;
+}
+
+.correct{
+    -fx-background-color:#00a205;
+}
+
+.wrong{
+    -fx-background-color:#d10101;
+}
+
+.default{
+    -fx-background-color:#2079ff;
 }

@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -23,6 +24,12 @@ public class RankingScene {
 
     @FXML
     private GridPane rankingGrid;
+
+    @FXML
+    private Label resultLabel;
+
+    @FXML
+    private Pane resultPane;
 
     public RankingScene() {
 
@@ -52,6 +59,20 @@ public class RankingScene {
             e.printStackTrace();
         }
         client.sortedRanking = ranking;
+
+        if (client.isHost) {
+            resultLabel.setText("Dalej...");
+            resultPane.getStyleClass().add("default");
+        } else {
+            if (client.getIsAnswerCorrect()) {
+                resultLabel.setText("Brawo!");
+                resultPane.getStyleClass().add("correct");
+            } else {
+                resultLabel.setText("Źle!");
+                resultPane.getStyleClass().add("wrong");
+
+            }
+        }
 
     }
 
