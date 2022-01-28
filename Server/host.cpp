@@ -234,7 +234,7 @@ void Host::endGame(string mess)
         string endInfo("Game has ended!\n");
         write(endInfo.c_str(), endInfo.length());
         sendToAllPlayers(endInfo.c_str(), endInfo.length());
-
+        _gameState++;
         remove();
     }
     else
@@ -286,6 +286,12 @@ void Host::remove()
     {
         Client *player = *it;
         it++;
+        if (_gameState != 4)
+        {
+            string hostDisconnect("critError:Host has disconnected!\n");
+            write(hostDisconnect.c_str(), hostDisconnect.length());
+            player->write(hostDisconnect.c_str(), hostDisconnect.length());
+        }
         player->removeHost();
     }
     hosts.erase(this);
