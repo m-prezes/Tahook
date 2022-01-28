@@ -37,6 +37,7 @@ public class Client {
     String errorMessage;
     JSONArray sortedRanking;
     Boolean isAnswerCorrect;
+    Boolean isActiveSelector;
 
     private Client() {
     }
@@ -75,6 +76,7 @@ public class Client {
 
     public void joinGame(Stage s, int pin, boolean host) throws IOException {
         stage = s;
+        isActiveSelector = true;
         selector = Selector.open();
         clientChanel = SocketChannel.open();
         clientChanel.connect(new InetSocketAddress("localhost", pin));
@@ -90,7 +92,7 @@ public class Client {
 
     public void work() throws IOException {
 
-        while (true) {
+        while (isActiveSelector) {
             // select() can block!
             if (selector.select() == 0) {
                 continue;
@@ -273,7 +275,8 @@ public class Client {
     void reset() {
         try {
             if (clientChanel.isOpen()) {
-                clientChanel.close();
+                clientChanel.finishConnect();
+                isActiveSelector = false;
                 selector.close();
             }
 

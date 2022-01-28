@@ -68,10 +68,8 @@ PRZEBIEG GRY:
 
 
 TODO:
-	- dopasować rozmieszczenie pytania
 	- info o błedach
 	- info o rozłączeniu z hostem
-	- java.nio error przy end client
 	
 	Typy errorow:
 	error:<tekst bledu> #blad do obslugi w okienku (chyba dziala)
