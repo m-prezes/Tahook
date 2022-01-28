@@ -17,6 +17,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class Client {
@@ -170,7 +172,17 @@ public class Client {
             nextScene("player/nickScene.fxml");
         } else if (str.equals("Enter pin:")) {
             nextScene("player/pinScene.fxml");
-        } else if (str.equals("Joined game")) {
+        } else if (str.equals("Invalid pin!")) {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    Alert a = new Alert(AlertType.ERROR);
+                    a.setContentText("Podaj poprawny PIN!");
+                    a.show();
+                }
+            });
+        }  
+        else if (str.equals("Joined game")) {
             gamestate++;
             nextScene("player/waitingForHostScene.fxml");
         } else if (gamestate == 1) {
