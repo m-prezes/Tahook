@@ -136,7 +136,18 @@ public class Client {
     }
 
     void handleHostGame(String str) {
-        if (str.equals("Need questions!")) {
+        if (str.substring(0, 6).equals("error:")) {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    String errMessage = str.substring(6, str.length());
+                    Alert a = new Alert(AlertType.ERROR);
+                    a.setTitle(errMessage);
+                    a.setContentText(errMessage);
+                    a.show();
+                }
+            });
+        } else if (str.equals("Need questions!")) {
             nextScene("host/createGameScene.fxml");
         } else if (str.substring(0, 4).equals("PIN:")) {
             gamestate++;
@@ -173,16 +184,7 @@ public class Client {
     }
 
     void handlePlayerGame(String str) {
-        // System.out.println(str.substring(0,6));
-        if (str.equals("Enter nick:")) {
-            nextScene("player/nickScene.fxml");
-        } else if (str.equals("Enter pin:")) {
-            nextScene("player/pinScene.fxml");
-        }
-        else if (str.substring(0, 10).equals("critError:")) {
-            errorMessage = str.substring(10, str.length());
-            nextScene("errorScene.fxml");
-        } else if (str.substring(0, 6).equals("error:")) {
+        if (str.substring(0, 6).equals("error:")) {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
@@ -193,10 +195,16 @@ public class Client {
                     a.show();
                 }
             });
+        } else if (str.equals("Enter nick:")) {
+            nextScene("player/nickScene.fxml");
         } else if (str.equals("Enter pin:")) {
             nextScene("player/pinScene.fxml");
-        }
-        else if (str.equals("Joined game")) {
+        } else if (str.substring(0, 10).equals("critError:")) {
+            errorMessage = str.substring(10, str.length());
+            nextScene("errorScene.fxml");
+        } else if (str.equals("Enter pin:")) {
+            nextScene("player/pinScene.fxml");
+        } else if (str.equals("Joined game")) {
             gamestate++;
             nextScene("player/waitingForHostScene.fxml");
         } else if (gamestate == 1) {

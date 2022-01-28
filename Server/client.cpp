@@ -152,14 +152,14 @@ void Client::sendAnswer(string mess)
         }
         catch (const exception &e)
         {
-            string answerIsInvalid("Invalid answer format!\n");
+            string answerIsInvalid("error:Invalid answer format!\n");
             write(answerIsInvalid.c_str(), answerIsInvalid.length());
         }
     }
     else
     {
 
-        string gameNotStarted("Question has not send yet!\n");
+        string gameNotStarted("error:Question has not send yet!\n");
         write(gameNotStarted.c_str(), gameNotStarted.length());
     }
 }

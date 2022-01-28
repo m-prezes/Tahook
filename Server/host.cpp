@@ -110,7 +110,7 @@ void Host::setQuestions(string mess)
     }
     catch (const exception &e)
     {
-        string questionIsInvalid("Cannot set question!\n");
+        string questionIsInvalid("error:Cannot set questions!\n");
         write(questionIsInvalid.c_str(), questionIsInvalid.length());
     }
 }
@@ -136,13 +136,13 @@ void Host::startGame(string mess)
         }
         else
         {
-            string toLowPlayers("Za mało graczy!\n");
+            string toLowPlayers("error:Not enough players!\n");
             write(toLowPlayers.c_str(), toLowPlayers.length());
         }
     }
     else
     {
-        string startRequest("Need start request!\n");
+        string startRequest("error:Need start request!\n");
         write(startRequest.c_str(), startRequest.length());
     }
 }
@@ -163,13 +163,13 @@ void Host::sendQuestion(string mess)
         }
         else
         {
-            string questionSendRequest("Need question send request!\n");
+            string questionSendRequest("error:Need question send request!\n");
             write(questionSendRequest.c_str(), questionSendRequest.length());
         }
     }
     else
     {
-        string questionActive("There is active question!\n");
+        string questionActive("error:There is an active question!\n");
         write(questionActive.c_str(), questionActive.length());
     }
 }
@@ -239,7 +239,7 @@ void Host::endGame(string mess)
     }
     else
     {
-        string endRequest("Need end request!\n");
+        string endRequest("error:Need end request!\n");
         write(endRequest.c_str(), endRequest.length());
     }
 }
