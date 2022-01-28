@@ -68,15 +68,16 @@ PRZEBIEG GRY:
 
 
 TODO:
-	- id onclick w fxml żeby zwracać zawsze odpowiedz
-	- wyśwuetlanie graczy w poczekalni
 	- dopasować rozmieszczenie pytania
 	- info o błedach
 	- info o rozłączeniu z hostem
-	- powrót info o poprawnej lub nie odpowiedzi
-	
+	- Zmiana pinu aktualnej gry (teraz na stale wpisane 123456)
 	- java.nio error przy end client
 	
+	Typy errorow:
+	error:<tekst bledu> #blad do obslugi w okienku (chyba dziala)
+	critError:<tekst bledu> #blad krytyczny powrot do menu glownego (Obsługa po stronie klienta dziala w 50%)
+
 	- co z write?
 	
 

@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tahook.StartScene">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="background" stylesheets="@../../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tahook.ErrorScene">
    <children>
-      <Pane layoutX="103.0" layoutY="119.0" onMouseClicked="#joinGame" prefHeight="363.0" prefWidth="594.0" styleClass="choose-role-box">
+      <Pane layoutX="103.0" layoutY="119.0" prefHeight="363.0" prefWidth="594.0" styleClass="choose-role-box">
          <children>
             <ImageView fitHeight="112.0" fitWidth="156.0" layoutX="241.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -22,7 +22,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Button layoutX="207.0" layoutY="281.0" mnemonicParsing="false" onAction="#returnToMain" prefHeight="55.0" prefWidth="180.0" text="Powrót do strony głównej" textAlignment="CENTER" />
+            <Button layoutX="207.0" layoutY="281.0" mnemonicParsing="false" onMouseClicked="#returnToMain" prefHeight="55.0" prefWidth="180.0" text="Powrót do strony głównej" textAlignment="CENTER" />
          </children>
          <effect>
             <DropShadow color="#00000080" />

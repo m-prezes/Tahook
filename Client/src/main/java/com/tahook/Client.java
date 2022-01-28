@@ -34,6 +34,7 @@ public class Client {
     int gamestate;
     String currentAnswers;
     String ranking;
+    String errorMessage;
     JSONArray sortedRanking;
     Boolean isAnswerCorrect;
 
@@ -46,6 +47,10 @@ public class Client {
 
     public String getPin() {
         return pin;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
     }
 
     public String getPlayers() {
@@ -168,20 +173,29 @@ public class Client {
     }
 
     void handlePlayerGame(String str) {
+        // System.out.println(str.substring(0,6));
         if (str.equals("Enter nick:")) {
             nextScene("player/nickScene.fxml");
         } else if (str.equals("Enter pin:")) {
             nextScene("player/pinScene.fxml");
-        } else if (str.equals("Invalid pin!")) {
+        }
+        else if (str.substring(0, 10).equals("critError:")) {
+            errorMessage = str.substring(10, str.length());
+            nextScene("errorScene.fxml");
+        } else if (str.substring(0, 6).equals("error:")) {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
+                    String errMessage = str.substring(6, str.length());
                     Alert a = new Alert(AlertType.ERROR);
-                    a.setContentText("Podaj poprawny PIN!");
+                    a.setTitle(errMessage);
+                    a.setContentText(errMessage);
                     a.show();
                 }
             });
-        }  
+        } else if (str.equals("Enter pin:")) {
+            nextScene("player/pinScene.fxml");
+        }
         else if (str.equals("Joined game")) {
             gamestate++;
             nextScene("player/waitingForHostScene.fxml");

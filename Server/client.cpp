@@ -114,7 +114,7 @@ void Client::joinGame(string pin)
     }
     if (!_connectedToGame)
     {
-        string pinIsNotValid("Invalid pin!\n");
+        string pinIsNotValid("error:Invalid pin!\n");
         write(pinIsNotValid.c_str(), pinIsNotValid.length());
     }
     else

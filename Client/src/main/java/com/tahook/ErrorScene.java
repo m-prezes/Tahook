@@ -15,17 +15,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 public class ErrorScene {
     private Stage stage;
     private Scene scene;
     private Parent root;
     private Client client;
-    JSONParser parser = new JSONParser();
-    private JSONObject receivedMessage;
+    String errMess;
     
 
     @FXML
@@ -35,12 +30,12 @@ public class ErrorScene {
 
     @FXML
     public void initialize() {
-        error_mess.setText(receivedMessage.get("error").toString());
+        error_mess.setText(errMess);
     }
 
-    public ErrorScene() throws ParseException {
+    public ErrorScene() {
         client = Client.getInstance();
-        receivedMessage = (JSONObject) parser.parse(client.getQuestion());
+        errMess = client.getErrorMessage();
     }
 
     public void switchToRankingScene(ActionEvent event) throws IOException {
@@ -51,11 +46,11 @@ public class ErrorScene {
     public void returnToMain(MouseEvent event) throws IOException {
         String message = "ROZLACZ";//TODO
         client.write(message);
-
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("startScene.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        // root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("startScene.fxml")));
+        // stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        // scene = new Scene(root);
+        // stage.setScene(scene);
+        // stage.show();
+        client.nextScene("startScene.fxml");
     }
 }
