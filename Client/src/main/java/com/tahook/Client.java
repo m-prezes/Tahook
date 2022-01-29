@@ -1,5 +1,7 @@
 package com.tahook;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -10,6 +12,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import java.util.Objects;
+import java.util.Scanner;
 
 import org.json.simple.JSONArray;
 
@@ -73,13 +76,33 @@ public class Client {
     public Boolean getIsAnswerCorrect() {
         return isAnswerCorrect;
     }
+    public String getConfigInfo(){
+        String ip = "localhost";
+        // System.out.println(new File(".").getAbsolutePath());
+        try {
+            File config = new File("config.txt");
+            Scanner myReader = new Scanner(config);
+                if (myReader.hasNextLine()) {
+                    ip = myReader.nextLine();
+                    // System.out.println(ip);
+                }else{
+                    System.out.println("Plik konfiguracyjny jest pusty!");
+                }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Brak pliku konfiguracyjego!");
+            e.printStackTrace();
+        }
+        System.out.println(ip);
+        return ip;
+    }
 
     public void joinGame(Stage s, int pin, boolean host) throws IOException {
         stage = s;
         isActiveSelector = true;
         selector = Selector.open();
         clientChanel = SocketChannel.open();
-        clientChanel.connect(new InetSocketAddress("localhost", pin));
+        clientChanel.connect(new InetSocketAddress(getConfigInfo(), pin));
         clientChanel.configureBlocking(false);
         clientChanel.register(selector, SelectionKey.OP_READ);
         gamestate = 0;
