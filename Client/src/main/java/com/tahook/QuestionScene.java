@@ -29,7 +29,7 @@ public class QuestionScene {
     private JSONObject nAnswers;
 
     @FXML
-    private Label fx_nAnswers, fxTime_left, fxAnswer_a, fxAnswer_b, fxAnswer_c, fxAnswer_d, fx_question;
+    private Label fx_nAnswers, fxTime_left, fxAnswer_a, fxAnswer_b, fxAnswer_c, fxAnswer_d, fx_question, pinLabel;
     // private Label fxAnswer_a;
     @FXML
     private Button but_ans_a, but_ans_b, but_ans_c, but_ans_d;
@@ -61,7 +61,7 @@ public class QuestionScene {
             updatePlayers.playFromStart();
         });
         updatePlayers.play();
-
+        pinLabel.setText(client.getPin());
     }
 
     public QuestionScene() throws ParseException {
@@ -76,24 +76,24 @@ public class QuestionScene {
     @FXML
     public void sendAnswer(MouseEvent event) throws IOException {
         if (!client.isHost) {
-            String answer="";            
+            String answer = "";
             Button btn = (Button) event.getSource();
-            switch (btn.getId()){
+            switch (btn.getId()) {
                 case "but_ans_a":
-                    answer="a";
+                    answer = "a";
                     break;
                 case "but_ans_b":
-                    answer="b";
+                    answer = "b";
                     break;
                 case "but_ans_c":
-                    answer="c";
+                    answer = "c";
                     break;
                 case "but_ans_d":
-                    answer="d";
-                    break;    
+                    answer = "d";
+                    break;
             }
             // System.out.println(answer); // za duzo id i znajduje
-                                                                                            // różne
+            // różne
             String message = "{\"question\":" + receivedMessage.get("number") + ", \"answer\":\"" + answer
                     + "\"}";
             client.write(message);
