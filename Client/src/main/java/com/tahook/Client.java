@@ -275,9 +275,9 @@ public class Client {
     void reset() {
         try {
             if (clientChanel.isOpen()) {
-                clientChanel.finishConnect();
                 isActiveSelector = false;
                 selector.close();
+                clientChanel.close();
             }
 
         } catch (IOException e) {

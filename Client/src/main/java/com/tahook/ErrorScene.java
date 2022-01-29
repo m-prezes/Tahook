@@ -35,5 +35,6 @@ public class ErrorScene {
     @FXML
     public void returnToMain(MouseEvent event) throws IOException {
         client.nextScene("startScene.fxml");
+        client.reset();
     }
 }

@@ -32,10 +32,10 @@ std::unordered_set<Host *> hosts;
 
 Host::Host(int fd, int epollFd) : _epollFd(epollFd), _gameState(0), _questionActive(false), _fd(fd)
 {
-    epoll_event ee{EPOLLIN | EPOLLRDHUP, {this}};
+    epoll_event ee{EPOLLIN | EPOLLOUT | EPOLLRDHUP, {this}};
     epoll_ctl(_epollFd, EPOLL_CTL_ADD, _fd, &ee);
     string questionsRequest("Need questions!\n");
-    write(questionsRequest.c_str(), questionsRequest.length());
+    write(questionsRequest.c_str());
 }
 
 Host::~Host()
@@ -73,7 +73,14 @@ void Host::handleEvent(uint32_t events)
         else
             events |= EPOLLERR;
     }
-    if (events & ~EPOLLIN)
+    if (events & EPOLLOUT)
+    {
+        if (_outputBuffer.length() != 0)
+        {
+            writeFromBuffer();
+        }
+    }
+    if ((events & ~EPOLLIN) & (events & ~EPOLLOUT))
     {
         remove();
     }
@@ -111,7 +118,7 @@ void Host::setQuestions(string mess)
     catch (const exception &e)
     {
         string questionIsInvalid("error:Cannot set questions!\n");
-        write(questionIsInvalid.c_str(), questionIsInvalid.length());
+        write(questionIsInvalid.c_str());
     }
 }
 
@@ -120,7 +127,7 @@ void Host::setPin()
     _pin = to_string(GAMEPIN);
     GAMEPIN++;
     string pinResponse("PIN:" + _pin + "\n");
-    write(pinResponse.c_str(), strlen(pinResponse.c_str()));
+    write(pinResponse.c_str());
 }
 
 void Host::startGame(string mess)
@@ -130,20 +137,20 @@ void Host::startGame(string mess)
         if (players.size() > 1)
         {
             string gameStartedMessage("Start game\n");
-            write(gameStartedMessage.c_str(), gameStartedMessage.length());
+            write(gameStartedMessage.c_str());
             sendQuestion("send");
             _gameState++;
         }
         else
         {
             string toLowPlayers("error:Not enough players!\n");
-            write(toLowPlayers.c_str(), toLowPlayers.length());
+            write(toLowPlayers.c_str());
         }
     }
     else
     {
         string startRequest("error:Need start request!\n");
-        write(startRequest.c_str(), startRequest.length());
+        write(startRequest.c_str());
     }
 }
 
@@ -156,21 +163,21 @@ void Host::sendQuestion(string mess)
             currAnswers = 0;
             auto &el = questions[currentQuestion];
             string messageQuestion = "question:" + el.dump() + "\n";
-            sendToAllPlayers(messageQuestion.c_str(), messageQuestion.length());
-            write(messageQuestion.c_str(), messageQuestion.length());
+            sendToAllPlayers(messageQuestion.c_str());
+            write(messageQuestion.c_str());
             _questionActive = true;
             timer();
         }
         else
         {
             string questionSendRequest("error:Need question send request!\n");
-            write(questionSendRequest.c_str(), questionSendRequest.length());
+            write(questionSendRequest.c_str());
         }
     }
     else
     {
         string questionActive("error:There is an active question!\n");
-        write(questionActive.c_str(), questionActive.length());
+        write(questionActive.c_str());
     }
 }
 
@@ -223,8 +230,8 @@ void Host::showRank()
         rank.push_back(playerPoints);
     }
     string rankingMessage = "ranking:" + rank.dump() + "\n";
-    write(rankingMessage.c_str(), rankingMessage.length());
-    sendToAllPlayers(rankingMessage.c_str(), rankingMessage.length());
+    write(rankingMessage.c_str());
+    sendToAllPlayers(rankingMessage.c_str());
 }
 
 void Host::endGame(string mess)
@@ -232,26 +239,25 @@ void Host::endGame(string mess)
     if (mess == "send")
     {
         string endInfo("Game has ended!\n");
-        write(endInfo.c_str(), endInfo.length());
-        sendToAllPlayers(endInfo.c_str(), endInfo.length());
+        write(endInfo.c_str());
+        sendToAllPlayers(endInfo.c_str());
         _gameState++;
-        remove();
     }
     else
     {
         string endRequest("error:Need end request!\n");
-        write(endRequest.c_str(), endRequest.length());
+        write(endRequest.c_str());
     }
 }
 
-void Host::sendToAllPlayers(const char *buffer, int count)
+void Host::sendToAllPlayers(const char *buffer)
 {
     auto it = players.begin();
     while (it != players.end())
     {
         Client *player = *it;
         it++;
-        player->write(buffer, count);
+        player->write(buffer);
     }
 }
 
@@ -269,13 +275,18 @@ void Host::getAllPlayersNicks()
     }
     cout << playersNicks.dump() << endl;
     string playersList("players:" + playersNicks.dump() + "\n");
-    write(playersList.c_str(), playersList.length());
+    write(playersList.c_str());
 }
 
-void Host::write(const char *buffer, int count)
+void Host::write(const char *buffer)
 {
-    if (count != ::write(_fd, buffer, count))
-        remove();
+    _outputBuffer += string(buffer);
+}
+
+void Host::writeFromBuffer()
+{
+    int bytes = ::write(_fd, _outputBuffer.c_str(), _outputBuffer.length());
+    _outputBuffer = _outputBuffer.substr(bytes, _outputBuffer.length());
 }
 
 void Host::remove()
@@ -289,11 +300,12 @@ void Host::remove()
         if (_gameState != 4)
         {
             string hostDisconnect("critError:Host has disconnected!\n");
-            write(hostDisconnect.c_str(), hostDisconnect.length());
-            player->write(hostDisconnect.c_str(), hostDisconnect.length());
+            write(hostDisconnect.c_str());
+            player->write(hostDisconnect.c_str());
         }
         player->removeHost();
     }
+
     hosts.erase(this);
     delete this;
 }

@@ -65,17 +65,18 @@ PRZEBIEG GRY:
 	- gracz otrzymuje ranking
 
 
+Typy errorow:
+	error:<tekst bledu> #blad do obslugi w okienku
+	critError:<tekst bledu> #blad krytyczny powrot do menu glownego 
+
+
+
+
 
 
 TODO:
-	- info o błedach
-	- info o rozłączeniu z hostem
-	
-	Typy errorow:
-	error:<tekst bledu> #blad do obslugi w okienku (chyba dziala)
-	critError:<tekst bledu> #blad krytyczny powrot do menu glownego (Obsługa po stronie klienta dziala w 50%)
-
-	- co z write?
+	- wyswietlanie pin 
+	- write buffory 
 	
 
 

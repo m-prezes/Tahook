@@ -26,10 +26,10 @@ unordered_set<Client *> clients;
 
 Client::Client(int fd, int epollFd) : _fd(fd), _epollFd(epollFd), _connectedToGame(false)
 {
-    epoll_event ee{EPOLLIN | EPOLLRDHUP, {this}};
+    epoll_event ee{EPOLLIN | EPOLLOUT | EPOLLRDHUP, {this}};
     epoll_ctl(_epollFd, EPOLL_CTL_ADD, _fd, &ee);
     string nickRequest("Enter nick:\n");
-    write(nickRequest.c_str(), nickRequest.length());
+    write(nickRequest.c_str());
 }
 
 Client::~Client()
@@ -64,7 +64,14 @@ void Client::handleEvent(uint32_t events)
         else
             events |= EPOLLERR;
     }
-    if (events & ~EPOLLIN)
+    if (events & EPOLLOUT)
+    {
+        if (_outputBuffer.length() != 0)
+        {
+            writeFromBuffer();
+        }
+    }
+    if ((events & ~EPOLLIN) & (events & ~EPOLLOUT))
     {
         remove();
     }
@@ -94,7 +101,7 @@ void Client::setNick(string nickName)
 {
     nick = nickName;
     string pinRequest("Enter pin:\n");
-    write(pinRequest.c_str(), pinRequest.length());
+    write(pinRequest.c_str());
 }
 
 void Client::joinGame(string pin)
@@ -115,12 +122,12 @@ void Client::joinGame(string pin)
     if (!_connectedToGame)
     {
         string pinIsNotValid("error:Invalid pin!\n");
-        write(pinIsNotValid.c_str(), pinIsNotValid.length());
+        write(pinIsNotValid.c_str());
     }
     else
     {
         string pinIsValid("Joined game\n");
-        write(pinIsValid.c_str(), pinIsValid.length());
+        write(pinIsValid.c_str());
         _host->getAllPlayersNicks();
     }
 }
@@ -139,13 +146,13 @@ void Client::sendAnswer(string mess)
             {
 
                 string messageForHost("answers:{\"currAnswers\":" + to_string(_host->currAnswers + 1) + "}\n");
-                writeToHost(messageForHost.c_str(), messageForHost.length());
+                writeToHost(messageForHost.c_str());
 
                 if (answer["answer"].dump() == _host->questions[currQue]["correctAnswer"].dump())
                 {
                     points += 100;
                     string isAnswerCorrect("isAnswerCorrect:true\n");
-                    write(isAnswerCorrect.c_str(), isAnswerCorrect.length());
+                    write(isAnswerCorrect.c_str());
                 }
                 _host->currAnswers++;
             }
@@ -153,14 +160,14 @@ void Client::sendAnswer(string mess)
         catch (const exception &e)
         {
             string answerIsInvalid("error:Invalid answer format!\n");
-            write(answerIsInvalid.c_str(), answerIsInvalid.length());
+            write(answerIsInvalid.c_str());
         }
     }
     else
     {
 
         string gameNotStarted("error:Question has not send yet!\n");
-        write(gameNotStarted.c_str(), gameNotStarted.length());
+        write(gameNotStarted.c_str());
     }
 }
 
@@ -170,16 +177,20 @@ void Client::endGame()
     delete this;
 }
 
-void Client::write(const char *buffer, int count)
+void Client::write(const char *buffer)
 {
-    if (count != ::write(_fd, buffer, count))
-        remove();
+    _outputBuffer += string(buffer);
 }
 
-void Client::writeToHost(const char *buffer, int count)
+void Client::writeFromBuffer()
 {
-    if (count != ::write(_host->_fd, buffer, count))
-        remove();
+    int bytes = ::write(_fd, _outputBuffer.c_str(), _outputBuffer.length());
+    _outputBuffer = _outputBuffer.substr(bytes, _outputBuffer.length());
+}
+
+void Client::writeToHost(const char *buffer)
+{
+    _host->write(buffer);
 }
 
 void Client::removeHost()

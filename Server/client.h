@@ -13,6 +13,7 @@ class Client : public Handler
     int _epollFd;
     Host *_host;
     string _inputBuffer;
+    string _outputBuffer = "";
 
 public:
     bool _connectedToGame;
@@ -25,8 +26,9 @@ public:
     virtual void handleEvent(uint32_t events) override;
     void remove();
 
-    void write(const char *buffer, int count);
-    void writeToHost(const char *buffer, int count);
+    void write(const char *buffer);
+    void writeFromBuffer();
+    void writeToHost(const char *buffer);
 
     void handlePlayerGame(string mess);
     void joinGame(string pin);

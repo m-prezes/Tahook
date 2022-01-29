@@ -18,6 +18,7 @@ class Host : public Handler
     string _pin;
     atomic<bool> _questionActive;
     string _inputBuffer = "";
+    string _outputBuffer = "";
 
 public:
     int _fd;
@@ -28,7 +29,7 @@ public:
 
     Host(int fd, int epollFd);
     ~Host();
-    void sendToAllPlayers(const char *buffer, int count);
+    void sendToAllPlayers(const char *buffer);
     void getAllPlayersNicks();
 
     int fd() const;
@@ -37,7 +38,8 @@ public:
     bool questionActive() const;
 
     virtual void handleEvent(uint32_t events) override;
-    void write(const char *buffer, int count);
+    void write(const char *buffer);
+    void writeFromBuffer();
 
     void handleHostGame(string mess);
     void setQuestions(string mess);
