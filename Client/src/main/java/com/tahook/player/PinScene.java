@@ -19,7 +19,8 @@ public class PinScene {
 
     public void switchToNickScene(ActionEvent event) throws IOException {
 
+        client.pin = pinField.getText();
         System.out.println(pinField.getText());
         client.write(pinField.getText());
-    }    
+    }
 }

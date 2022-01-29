@@ -27,6 +27,9 @@ public class PodiumScene {
     @FXML
     private Label thirdPlaceLabel;
 
+    @FXML
+    private Label pinLabel;
+
     public PodiumScene() {
         client = Client.getInstance();
     }
@@ -38,6 +41,7 @@ public class PodiumScene {
         if (client.sortedRanking.size() > 2) {
             thirdPlaceLabel.setText(((JSONObject) client.sortedRanking.get(2)).get("userName").toString());
         }
+        pinLabel.setText(client.getPin());
     }
 
     public void switchToStartScene(ActionEvent event) throws IOException {

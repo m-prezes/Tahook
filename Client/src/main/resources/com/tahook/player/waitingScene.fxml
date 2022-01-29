@@ -17,7 +17,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="700.0" layoutY="5.0" text="123456">
+            <Label layoutX="700.0" layoutY="5.0" fx:id="pinLabel">
                <font>
                   <Font size="20.0" />
                </font>

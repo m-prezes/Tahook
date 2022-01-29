@@ -31,7 +31,7 @@ public class Client {
     Stage stage;
     Selector selector;
     SocketChannel clientChanel;
-    String pin;
+    public String pin;
     String question;
     String players;
     int gamestate;
@@ -97,12 +97,12 @@ public class Client {
         return ip;
     }
 
-    public void joinGame(Stage s, int pin, boolean host) throws IOException {
+    public void joinGame(Stage s, int port, boolean host) throws IOException {
         stage = s;
         isActiveSelector = true;
         selector = Selector.open();
         clientChanel = SocketChannel.open();
-        clientChanel.connect(new InetSocketAddress(getConfigInfo(), pin));
+        clientChanel.connect(new InetSocketAddress(getConfigInfo(), port));
         clientChanel.configureBlocking(false);
         clientChanel.register(selector, SelectionKey.OP_READ);
         gamestate = 0;
@@ -227,8 +227,6 @@ public class Client {
         } else if (str.substring(0, 10).equals("critError:")) {
             errorMessage = str.substring(10, str.length());
             nextScene("errorScene.fxml");
-        } else if (str.equals("Enter pin:")) {
-            nextScene("player/pinScene.fxml");
         } else if (str.equals("Joined game")) {
             gamestate++;
             nextScene("player/waitingForHostScene.fxml");

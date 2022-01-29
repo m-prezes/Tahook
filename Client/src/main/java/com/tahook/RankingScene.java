@@ -26,7 +26,7 @@ public class RankingScene {
     private GridPane rankingGrid;
 
     @FXML
-    private Label resultLabel;
+    private Label resultLabel, pinLabel;
 
     @FXML
     private Pane resultPane;
@@ -73,6 +73,8 @@ public class RankingScene {
 
             }
         }
+
+        pinLabel.setText(client.getPin());
 
     }
 
