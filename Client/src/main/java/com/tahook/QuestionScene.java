@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.json.simple.JSONObject;
@@ -18,6 +19,8 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.Objects;
+
+// import javax.print.attribute.standard.MediaSize.NA;
 
 public class QuestionScene {
     private Stage stage;
@@ -28,6 +31,8 @@ public class QuestionScene {
     private JSONObject receivedMessage;
     private JSONObject nAnswers;
 
+    @FXML
+    private Text fx_nAnsText;
     @FXML
     private Label fx_nAnswers, fxTime_left, fxAnswer_a, fxAnswer_b, fxAnswer_c, fxAnswer_d, fx_question, pinLabel;
     // private Label fxAnswer_a;
@@ -50,18 +55,24 @@ public class QuestionScene {
         });
         wait.play();
 
-        PauseTransition updatePlayers = new PauseTransition(Duration.seconds(0.1));
-        updatePlayers.setOnFinished((e) -> {
-            try {
-                nAnswers = (JSONObject) parser.parse(client.getCurrentAnswers());
-            } catch (ParseException e1) {
-                e1.printStackTrace();
-            }
-            fx_nAnswers.setText(nAnswers.get("currAnswers").toString());
-            updatePlayers.playFromStart();
-        });
-        updatePlayers.play();
+        if (!client.isHost) {
+            fx_nAnswers.setText("");
+            fx_nAnsText.setText("");
+        } else {
+            PauseTransition updatePlayers = new PauseTransition(Duration.seconds(0.1));
+            updatePlayers.setOnFinished((e) -> {
+                try {
+                    nAnswers = (JSONObject) parser.parse(client.getCurrentAnswers());
+                } catch (ParseException e1) {
+                    e1.printStackTrace();
+                }
+                fx_nAnswers.setText(nAnswers.get("currAnswers").toString());
+                updatePlayers.playFromStart();
+            });
+            updatePlayers.play();
+        }
         pinLabel.setText(client.getPin());
+
     }
 
     public QuestionScene() throws ParseException {
