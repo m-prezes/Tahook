@@ -99,9 +99,17 @@ void Client::handlePlayerGame(string mess)
 
 void Client::setNick(string nickName)
 {
-    nick = nickName;
-    string pinRequest("Enter pin:\n");
-    write(pinRequest.c_str());
+    if (nickName != "")
+    {
+        nick = nickName;
+        string pinRequest("Enter pin:\n");
+        write(pinRequest.c_str());
+    }
+    else
+    {
+        string nickIsEmpty("error:Invalid nick!\n");
+        write(nickIsEmpty.c_str());
+    }
 }
 
 void Client::joinGame(string pin)

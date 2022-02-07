@@ -37,7 +37,9 @@ public class PodiumScene {
     @FXML
     public void initialize() {
         firstPlaceLabel.setText(((JSONObject) client.sortedRanking.get(0)).get("userName").toString());
-        secondPlaceLabel.setText(((JSONObject) client.sortedRanking.get(1)).get("userName").toString());
+        if (client.sortedRanking.size() > 1) {
+            secondPlaceLabel.setText(((JSONObject) client.sortedRanking.get(1)).get("userName").toString());
+        }
         if (client.sortedRanking.size() > 2) {
             thirdPlaceLabel.setText(((JSONObject) client.sortedRanking.get(2)).get("userName").toString());
         }

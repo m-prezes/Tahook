@@ -81,12 +81,15 @@ public:
     }
 } servHandlerForPlayers;
 
-int main(int argc, char **argv)
+int main()
 {
-    if (argc != 3)
-        error(1, 0, "Need 2 arg (port)");
-    auto portForHosts = readPort(argv[1]);
-    auto portForPlayers = readPort(argv[2]);
+    // if (argc != 3)
+    //     error(1, 0, "Need 2 arg (port)");
+    // auto portForHosts = readPort(argv[1]);
+    // auto portForPlayers = readPort(argv[2]);
+
+    auto portForHosts = 1111;
+    auto portForPlayers = 2222;
 
     servFdForHosts = socket(AF_INET, SOCK_STREAM, 0);
     servFdForPlayers = socket(AF_INET, SOCK_STREAM, 0);
