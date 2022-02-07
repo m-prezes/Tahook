@@ -49,7 +49,7 @@ public class WaitingRoom {
                     playerLabel.setText(playersList.get(key).toString());
                     playerLabel.getStyleClass().add("player-label");
                     playerLabel.setAlignment(Pos.CENTER);
-                    playersGrid.add(playerLabel, i % 3, i / 4);
+                    playersGrid.add(playerLabel, i % 3, i / 3);
                 }
 
             } catch (ParseException e1) {

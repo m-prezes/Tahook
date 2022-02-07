@@ -137,7 +137,6 @@ int main()
             error(0, errno, "epoll_wait failed");
             ctrl_c(SIGINT);
         }
-        cout << "Main while" << endl;
         ((Handler *)ee.data.ptr)->handleEvent(ee.events);
     }
 }
