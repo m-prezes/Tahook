@@ -79,6 +79,11 @@ void Host::handleEvent(uint32_t events)
         {
             writeFromBuffer();
         }
+        else
+        {
+            epoll_event ee{EPOLLIN | EPOLLRDHUP, {this}};
+            epoll_ctl(_epollFd, EPOLL_CTL_MOD, _fd, &ee);
+        }
     }
     if ((events & ~EPOLLIN) & (events & ~EPOLLOUT))
     {
@@ -281,6 +286,8 @@ void Host::getAllPlayersNicks()
 void Host::write(const char *buffer)
 {
     _outputBuffer += string(buffer);
+    epoll_event ee{EPOLLIN | EPOLLOUT | EPOLLRDHUP, {this}};
+    epoll_ctl(_epollFd, EPOLL_CTL_MOD, _fd, &ee);
 }
 
 void Host::writeFromBuffer()
